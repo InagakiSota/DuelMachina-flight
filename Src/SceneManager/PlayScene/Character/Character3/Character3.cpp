@@ -344,7 +344,7 @@ void Character3::AI()
 void Character3::CollisionUpdate()
 {
 	//プレイヤーのY軸の角度
-	if (GetPos().x < GetEnemyPos().x && GetLandingFlag() == true)
+	if (GetPos().x < GetEnemyPos().x )
 	{
 		//向いている方向を変える
 		SetAngleY(Character3Params::ANGLE_Y);
@@ -353,7 +353,7 @@ void Character3::CollisionUpdate()
 		frontVector.x = 1.0f;
 		SetFrontVector(frontVector);
 	}
-	if (GetPos().x > GetEnemyPos().x && GetLandingFlag() == true)
+	if (GetPos().x > GetEnemyPos().x )
 	{
 		//向いている方向を変える
 		SetAngleY(-180.0f + Character3Params::ANGLE_Y);

@@ -27,8 +27,6 @@ const float CharacterBase::MOVE_LIMIT_X = 3.0f;
 //コンストラクタ
 CharacterBase::CharacterBase(ePLAYER_ID playerID)
 	: m_jumpFlag(false),
-	m_landingFlag(false),
-	m_landingFlagBuf(false),
 	m_legBoxWorld(DirectX::SimpleMath::Matrix::Identity),
 	m_legCollBox{},
 	m_pLegBox(nullptr),
@@ -210,13 +208,6 @@ void CharacterBase::Update(DX::StepTimer const& timer)
 		AI();
 		//StateManager();
 	}
-
-	//重力落下
-	if (m_landingFlag == false)
-	{
-		m_vel.y += GRAVITY;
-	}
-	else if (m_landingFlag == true)m_vel.y = 0.0f;
 
 	//移動制限
 	if (m_pos.x > -MOVE_LIMIT_X || m_pos.x < MOVE_LIMIT_X)m_vel.x = 0.0f;
@@ -448,38 +439,38 @@ void CharacterBase::Finalize()
 //////////////////////////
 void CharacterBase::HitFloor(const Collision::BoxCollision& floorColl)
 {
-	if (Collision::CheckHitBox2Box(m_legCollBox, floorColl))
-	{
-		//Y方向の移動量を0にする
-		m_vel.y = 0.0f;
+	//if (Collision::CheckHitBox2Box(m_legCollBox, floorColl))
+	//{
+	//	//Y方向の移動量を0にする
+	//	m_vel.y = 0.0f;
 
-		//着地フラグを立てる
-		m_landingFlag = true;
-		//m_pos.y += 0.0001f;
-		m_jumpFlag = false;
-		//ジャンプ状態なら待ち状態にする
-		if (m_charaState == eCHARACTER_STATE::JUMP)
-		{
-			m_charaState = eCHARACTER_STATE::WAIT;
-		}
-		
-		//着地したらカメラを振動させる
-		if (m_pPlayScene != nullptr)
-		{
-			if(m_landingFlag == true && m_landingFlagBuf == false)
-				m_pPlayScene->CameraShake(0.5f, 0.1f);
-		}
+	//	//着地フラグを立てる
+	//	m_landingFlag = true;
+	//	//m_pos.y += 0.0001f;
+	//	m_jumpFlag = false;
+	//	//ジャンプ状態なら待ち状態にする
+	//	if (m_charaState == eCHARACTER_STATE::JUMP)
+	//	{
+	//		m_charaState = eCHARACTER_STATE::WAIT;
+	//	}
+	//	
+	//	//着地したらカメラを振動させる
+	//	if (m_pPlayScene != nullptr)
+	//	{
+	//		if(m_landingFlag == true && m_landingFlagBuf == false)
+	//			m_pPlayScene->CameraShake(0.5f, 0.1f);
+	//	}
 
-		//着地フラグのバッファの同期
-		m_landingFlagBuf = m_landingFlag;
-	}
-	else
-	{
-		m_landingFlag = false;
-		//着地フラグのバッファの同期
-		m_landingFlagBuf = m_landingFlag;
+	//	//着地フラグのバッファの同期
+	//	m_landingFlagBuf = m_landingFlag;
+	//}
+	//else
+	//{
+	//	m_landingFlag = false;
+	//	//着地フラグのバッファの同期
+	//	m_landingFlagBuf = m_landingFlag;
 
-	}
+	//}
 
 }
 
@@ -494,21 +485,21 @@ void CharacterBase::HitEnemyBody(const Collision::BoxCollision& enemyBodyColl, c
 	if (Collision::CheckHitBox2Box(m_bodyCollBox, enemyBodyColl))
 	{
 		//前フレームの座標に戻す
-		if (m_landingFlag == true)
+		//if (m_landingFlag == true)
 		{
 			m_pos = m_posBuf;
 		}
-		else if (m_jumpFlag == true)
-		{
-			m_pos.x = m_posBuf.x;
-		}
+		//else if (m_jumpFlag == true)
+		//{
+		//	m_pos.x = m_posBuf.x;
+		//}
 	}
 
 	//体と頭の当たり判定(上から乗った時)
 	if (Collision::CheckHitBox2Box(m_bodyCollBox, enemyHeadColl))
 	{
 		//着地フラグを立てる
-		m_landingFlag = true;
+		//m_landingFlag = true;
 		//待機状態にする
 		m_charaState = eCHARACTER_STATE::WAIT;
 		//Y方向の移動量を0にする
@@ -614,16 +605,6 @@ void CharacterBase::Ready(DX::StepTimer const& timer)
 	//ステートの管理
 	if (m_hp > 0)StateManager();
 
-	//重力落下
-	if (m_landingFlag == false)
-	{
-		m_vel.y += GRAVITY;
-
-	}
-	else if (m_landingFlag == true && m_charaState == eCHARACTER_STATE::BOOST_MOVE)
-	{
-		m_vel.y = 0.0f;
-	}
 	//移動制限
 	if (m_pos.x > -MOVE_LIMIT_X || m_pos.x < MOVE_LIMIT_X)m_vel.x = 0.0f;
 	if (m_pos.x < -MOVE_LIMIT_X) m_pos.x = -MOVE_LIMIT_X;
@@ -657,13 +638,6 @@ void CharacterBase::Lose(DX::StepTimer const& timer)
 	m_vel.x = 0.0f;
 	//ステートを負け状態にする
 	m_charaState = eCHARACTER_STATE::LOSE;
-	//重力落下
-	if (m_landingFlag == false)
-	{
-		m_vel.y += GRAVITY;
-
-	}
-	else if (m_landingFlag == true)m_vel.y = 0.0f;
 
 	//バッファに座標を格納
 	m_posBuf = m_pos;
@@ -738,7 +712,14 @@ void CharacterBase::StateManager()
 		//やられ状態でなければ各状態の処理をする
 		if (m_charaState != eCHARACTER_STATE::DAMAGE)
 		{
-			if (m_landingFlag == true)
+			if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Up) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Left) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Down) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Right) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::LeftShift) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Space) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) != true)
 			{
 				m_charaState = eCHARACTER_STATE::WAIT;
 			}
@@ -761,9 +742,9 @@ void CharacterBase::StateManager()
 
 
 			//待ち状態に下入力でしゃがみ
-			if (m_charaState == eCHARACTER_STATE::WAIT && keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && m_landingFlag == true)
+			if (m_charaState == eCHARACTER_STATE::WAIT && keyState.IsKeyDown(DirectX::Keyboard::Keys::Down))
 			{
-				m_charaState = eCHARACTER_STATE::SQUAT;
+				//m_charaState = eCHARACTER_STATE::SQUAT;
 			}
 
 			//待ち状態で左右入力で移動
@@ -778,7 +759,7 @@ void CharacterBase::StateManager()
 					m_isAttacking == false))
 			{
 				//前移動
-				m_charaState = eCHARACTER_STATE::MOVE_FRONT;
+				//m_charaState = eCHARACTER_STATE::MOVE_FRONT;
 			}
 			if (((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
 				keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) && m_frontVector.x > 0 &&
@@ -792,15 +773,15 @@ void CharacterBase::StateManager()
 					m_isAttacking == false))
 			{
 				//後移動
-				m_charaState = eCHARACTER_STATE::MOVE_BACK;
+				//m_charaState = eCHARACTER_STATE::MOVE_BACK;
 			}
-			//上入力でジャンプ
-			if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Up) &&
-				m_charaState != eCHARACTER_STATE::SQUAT &&
-				m_charaState != eCHARACTER_STATE::BOOST_MOVE)
-			{
-				m_charaState = eCHARACTER_STATE::JUMP;
-			}
+			//上入力で上移動
+			//if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Up) &&
+			//	m_charaState != eCHARACTER_STATE::SQUAT &&
+			//	m_charaState != eCHARACTER_STATE::BOOST_MOVE)
+			//{
+			//	m_charaState = eCHARACTER_STATE::JUMP;
+			//}
 		}
 	}
 
@@ -809,14 +790,20 @@ void CharacterBase::StateManager()
 		//やられ状態でなければ各状態の処理をする
 		if (m_charaState != eCHARACTER_STATE::DAMAGE)
 		{
-			if (m_landingFlag == true)
+			if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::W) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::A) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::S) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::D) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::LeftShift) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Space) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) != true &&
+				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) != true)
 			{
 				m_charaState = eCHARACTER_STATE::WAIT;
 			}
 
-
 			//待ち状態に下入力でしゃがみ
-			if (m_charaState == eCHARACTER_STATE::WAIT && keyState.IsKeyDown(DirectX::Keyboard::Keys::S) && m_landingFlag == true)
+			if (m_charaState == eCHARACTER_STATE::WAIT && keyState.IsKeyDown(DirectX::Keyboard::Keys::S))
 			{
 				m_charaState = eCHARACTER_STATE::SQUAT;
 			}
@@ -867,6 +854,8 @@ void CharacterBase::StateManager()
 	}
 
 }
+
+
 
 ///////////////////////////
 //攻撃

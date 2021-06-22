@@ -41,8 +41,6 @@ void PlaySceneFadeInState::Update(DX::StepTimer const& timer)
 
 	for (int i = 0; i < m_pPlayScene->PLAYER_NUM; i++)
 	{
-		//プレイヤーの床との当たり判定
-		m_pPlayScene->GetPlayer(i)->HitFloor(m_pPlayScene->GetFloor());
 
 		//プレイヤーの準備
 		m_pPlayScene->GetPlayer(i)->Ready(timer);

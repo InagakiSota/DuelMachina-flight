@@ -125,9 +125,10 @@ void Character1::Initialize()
 //////////////////////////
 void Character1::Update(DX::StepTimer const& timer)
 {
+	//移動処理
+	Move();
 	//基底クラスの更新
 	CharacterBase::Update(timer);
-
 	//ヒットエフェクトの発生位置の座標設定
 	SetHitEffectPos(DirectX::SimpleMath::Vector3(
 		GetPos().x, GetPos().y, GetPos().z));
@@ -317,6 +318,39 @@ void Character1::AI()
 }
 
 
+
+///////////////////////////
+//移動
+//引数:なし
+//戻り値:なし
+//////////////////////////
+void Character1::Move()
+{
+	//キーの状態取得
+	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
+
+	DirectX::SimpleMath::Vector3 vel = GetVel();
+
+	//移動制限内にいたら移動
+	if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right))
+	{
+		if (GetPos().x >= -Character1Params::MOVE_LIMIT_X || GetPos().x <= Character1Params::MOVE_LIMIT_X)
+		{
+			//敵が右側にいたら右方向に移動
+			if (GetFrontVector().x > 0)
+			{
+				vel.x = Character1Params::GetInstance()->MOVE_FRONT_FORCE;
+			}
+			//敵が左側にいたら左方向に移動
+			else if (GetFrontVector().x < 0)
+			{
+				vel.x = -Character1Params::GetInstance()->MOVE_FRONT_FORCE;
+			}
+			SetVel(vel);
+		}
+	}
+}
+
 ///////////////////////////
 //攻撃
 //引数:なし
@@ -347,7 +381,7 @@ void Character1::StateManager()
 void Character1::CollisionUpdate()
 {
 	//プレイヤーのY軸の角度
-	if (GetPos().x < GetEnemyPos().x && (GetLandingFlag() == true || GetCharaState() == eCHARACTER_STATE::BOOST_MOVE) && GetCharaState() != eCHARACTER_STATE::SQUAT)
+	if (GetPos().x < GetEnemyPos().x )
 	{
 		//向いている方向を変える
 		SetAngleY(Character1Params::ANGLE_Y);
@@ -356,7 +390,7 @@ void Character1::CollisionUpdate()
 		frontVector.x = 1.0f;
 		SetFrontVector(frontVector);
 	}
-	else if (GetPos().x > GetEnemyPos().x && (GetLandingFlag() == true || GetCharaState() == eCHARACTER_STATE::BOOST_MOVE) && GetCharaState() != eCHARACTER_STATE::SQUAT)
+	else if (GetPos().x > GetEnemyPos().x)
 	{
 		//向いている方向を変える
 		SetAngleY(-Character1Params::ANGLE_Y);

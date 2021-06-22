@@ -74,6 +74,9 @@ public:
 	////////////////////////////////
 	//ゲッター、セッター
 	////////////////////////////////
+	//移動
+	void Move() override {}
+
 	//プレイシーンのポインタの取得
 	void SetPlayScene(SceneBase* pPlayScene) override
 	{
@@ -228,16 +231,6 @@ public:
 	 void SetCharaState(const eCHARACTER_STATE& state) override
 	 {
 		 m_charaState = state;
-	 }
-	//接地フラグの取得
-	 bool GetLandingFlag() override
-	 {
-		 return m_landingFlag;
-	 }
-	//接地フラグの設定
-	 void SetLandingFlag(const bool& landingFlag) override
-	 {
-		 m_landingFlag = landingFlag;
 	 }
 	//ジャンプフラグの取得
 	 bool GetJumpFlag() override
@@ -497,10 +490,6 @@ private:
 	FbxModel* m_pShieldModel;
 	//シールドのモデルのワールド行列
 	DirectX::SimpleMath::Matrix m_shieldWorld;
-	//着地フラグ
-	bool m_landingFlag;		
-	//着地フラグのバッファ
-	bool m_landingFlagBuf;
 	//ジャンプフラグ
 	bool m_jumpFlag;					
 	//プレイヤーのID(プレイヤー１か２か)

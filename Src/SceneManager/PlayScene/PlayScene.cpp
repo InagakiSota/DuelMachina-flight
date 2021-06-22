@@ -52,9 +52,7 @@
 
 //コンストラクタ
 PlayScene::PlayScene()
-	:m_floorBox{},
-	m_pFloor(nullptr),
-	m_floorWorld{},
+	:
 	m_space(nullptr),
 	m_spaceWorld{},
 	//m_pAttackManager(nullptr),
@@ -76,7 +74,6 @@ PlayScene::~PlayScene()
 	//念のため終了処理
 	//Finalize();
 
-	m_pFloor.reset();
 	//m_pFbx.reset();
 	m_pDebugCamera.reset();
 	m_space.reset();
@@ -111,11 +108,6 @@ void PlayScene::Initialize()
 	
 	m_isResult = false;
 
-	//床の作成
-	m_floorBox.pos = DirectX::SimpleMath::Vector3(0.0f, -2.0f, 0.0f);
-	m_floorBox.size_h = DirectX::SimpleMath::Vector3(6.0f, 0.25f, 2.0f);
-	m_pFloor = DirectX::GeometricPrimitive::CreateBox(gdi->GetDeviceResources()->GetD3DDeviceContext(), m_floorBox.size_h*2);
-	m_floorWorld = DirectX::SimpleMath::Matrix::CreateTranslation(m_floorBox.pos);
 
 	//プレイヤーの作成
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)] = CharacterFactory::CreatePlayer1();
@@ -242,9 +234,6 @@ void PlayScene::Render()
 	//天球の描画
 	m_space->Render(GetView(), GetProj());
 
-	//床の描画
-	if(m_isResult == false)
-		m_pFloor->Draw(m_floorWorld, GetView(), GetProj(), DirectX::Colors::Brown);
 
 	for (int i = 0; i < PLAYER_NUM; i++)
 	{
@@ -290,8 +279,6 @@ void PlayScene::Finalize()
 		}
 	}
 
-	//リソースの解放
-	m_pFloor.reset();
 	//m_pFbx.reset();
 	m_pDebugCamera.reset();
 	m_space.reset();

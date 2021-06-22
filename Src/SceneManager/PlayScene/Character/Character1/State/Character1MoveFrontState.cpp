@@ -41,7 +41,7 @@ void Character1MoveFrontState::Update()
 	DirectX::SimpleMath::Vector3 vel = m_pCharacter->GetVel();
 
 	//ˆÚ“®§ŒÀ“à‚É‚¢‚½‚çˆÚ“®
-	if (m_pCharacter->GetPos().x >= -Character1Params::MOVE_LIMIT_X || m_pCharacter->GetPos().x <= Character1Params::MOVE_LIMIT_X && m_pCharacter->GetLandingFlag() ==true)
+	if (m_pCharacter->GetPos().x >= -Character1Params::MOVE_LIMIT_X || m_pCharacter->GetPos().x <= Character1Params::MOVE_LIMIT_X )
 	{
 		//“G‚ª‰E‘¤‚É‚¢‚½‚ç‰E•ûŒü‚ÉˆÚ“®
 		if (m_pCharacter->GetFrontVector().x > 0)

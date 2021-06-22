@@ -193,11 +193,6 @@ public:
 		return m_pPlayer[index];
 	}
 
-	//床オブジェクトのポインタ取得
-	Collision::BoxCollision GetFloor()
-	{
-		return m_floorBox;
-	}
 	//リセット
 	void Reset();
 	//操作説明
@@ -241,19 +236,18 @@ private:
 	//fbx
 	//std::unique_ptr<Fbx> m_pFbx;
 
-	//床
-	std::unique_ptr<DirectX::GeometricPrimitive> m_pFloor;
-	//床のワールド行列
-	DirectX::SimpleMath::Matrix m_floorWorld;
-	//床の当たり判定用の箱
-	Collision::BoxCollision m_floorBox;
+	////床
+	//std::unique_ptr<DirectX::GeometricPrimitive> m_pFloor;
+	////床のワールド行列
+	//DirectX::SimpleMath::Matrix m_floorWorld;
+	////床の当たり判定用の箱
+	//Collision::BoxCollision m_floorBox;
 
 	//プレイヤーのポインタ
 	CharacterBase* m_pPlayer[PLAYER_NUM];
 
 	//デバッグカメラ
 	std::unique_ptr<DebugCamera> m_pDebugCamera;
-
 
 	//足元の影のエフェクト
 	std::unique_ptr<ShadowManager> m_pShadowManager[PLAYER_NUM];

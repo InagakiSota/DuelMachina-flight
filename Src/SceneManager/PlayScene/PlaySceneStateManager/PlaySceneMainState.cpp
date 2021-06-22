@@ -83,8 +83,6 @@ void PlaySceneMainState::CountDown(DX::StepTimer const& timer)
 {
 	for (int i = 0; i < PlayScene::PLAYER_NUM; i++)
 	{
-		//プレイヤーの床との当たり判定
-		m_pPlayScene->GetPlayer(i)->HitFloor(m_pPlayScene->GetFloor());
 		//プレイヤーの準備
 		m_pPlayScene->GetPlayer(i)->Ready(timer);
 	}
@@ -143,8 +141,6 @@ void PlaySceneMainState::Main(DX::StepTimer const& timer)
 
 	for (int i = 0; i < PlayScene::PLAYER_NUM; i++)
 	{
-		//プレイヤーの床との当たり判定
-		m_pPlayScene->GetPlayer(i)->HitFloor(m_pPlayScene->GetFloor());
 		//プレイヤーの準備
 		m_pPlayScene->GetPlayer(i)->Update(timer);
 	}
@@ -222,11 +218,6 @@ void PlaySceneMainState::TimeUp(DX::StepTimer const& timer)
 //////////////////////////
 void PlaySceneMainState::Result(DX::StepTimer const& timer)
 {
-	for (int i = 0; i < PlayScene::PLAYER_NUM; i++)
-	{
-		//プレイヤーの床との当たり判定
-		m_pPlayScene->GetPlayer(i)->HitFloor(m_pPlayScene->GetFloor());
-	}
 	//プレイヤー１の体力がプレイヤー２より多ければプレイヤー１を動かす
 	if (m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_1))->GetHP() >
 		m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_2))->GetHP())

@@ -127,7 +127,7 @@ void Character2AttackMiddleBottom::Update()
 		else
 		{
 			vel.y = Character2AttackMiddleBottom::PLAYER_VEL_X_DOWN;
-			if (m_pCharacter->GetLandingFlag() == true)vel.y = 0.0f;
+			//if (m_pCharacter->GetLandingFlag() == true)vel.y = 0.0f;
 		}
 
 		//ˆê’èŠÔŒo‚Á‚½‚çÁ‚·

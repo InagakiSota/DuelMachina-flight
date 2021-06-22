@@ -60,6 +60,8 @@ public:
 	////////////////////////////////
 	//ゲッター、セッター
 	////////////////////////////////
+	//移動
+	virtual void Move() = 0;
 	//プレイシーンのポインタの取得
 	virtual void SetPlayScene(SceneBase* pPlayScene) = 0;
 	//3Dモデルのポインタの取得
@@ -118,10 +120,6 @@ public:
 	virtual eCHARACTER_STATE GetCharaState() = 0;
 	//キャラクターのステートの設定
 	virtual void SetCharaState(const eCHARACTER_STATE& state) = 0;
-	//接地フラグの取得
-	virtual bool GetLandingFlag() = 0;
-	//接地フラグの設定
-	virtual void SetLandingFlag(const bool& landingFlag) = 0;
 	//ジャンプフラグの取得
 	virtual bool GetJumpFlag() = 0;
 	//ジャンプフラグの設定

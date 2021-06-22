@@ -78,7 +78,7 @@ void Character1BoostMoveState::Update()
 		vel.y = Character1Params::GetInstance()->MOVE_BOOST_FORCE;
 	}
 	//‰º“ü—Í
-	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && m_pCharacter->GetLandingFlag() == false)
+	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) )
 	{
 		vel.y = -Character1Params::GetInstance()->MOVE_BOOST_FORCE;
 	}

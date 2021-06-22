@@ -358,7 +358,7 @@ void Character2::CollisionUpdate()
 {
 	//プレイヤーのY軸の角度
 //敵が自分より右に右にいたら右を向く
-	if (GetPos().x < GetEnemyPos().x && (GetLandingFlag() == true || GetCharaState() == eCHARACTER_STATE::BOOST_MOVE) && GetCharaState() != eCHARACTER_STATE::SQUAT)
+	if (GetPos().x < GetEnemyPos().x )
 	{
 		//向いている方向を変える
 		SetAngleY(Character2Params::ANGLE_Y);
@@ -368,7 +368,7 @@ void Character2::CollisionUpdate()
 		SetFrontVector(frontVector);
 	}
 	//敵が自分より左にいたら左を向く
-	else if (GetPos().x > GetEnemyPos().x && (GetLandingFlag() == true || GetCharaState() == eCHARACTER_STATE::BOOST_MOVE) && GetCharaState() != eCHARACTER_STATE::SQUAT)
+	else if (GetPos().x > GetEnemyPos().x)
 	{
 		//向いている方向を変える
 		SetAngleY(-180.0f + Character2Params::ANGLE_Y);

@@ -38,7 +38,7 @@ void Character1JumpState::Initialize(CharacterBase* pCharacterBase)
 //////////////////////////
 void Character1JumpState::Update()
 {
-	if (m_pCharacter->GetJumpFlag() == false && m_pCharacter->GetLandingFlag() == true)
+	if (m_pCharacter->GetJumpFlag() == false)
 	{
 		//キャラクターの移動量を保存
 		DirectX::SimpleMath::Vector3 vel = m_pCharacter->GetVel();
@@ -46,7 +46,7 @@ void Character1JumpState::Update()
 		//ジャンプフラグをtrueにする
 		m_pCharacter->SetJumpFlag(true);
 		//接地フラグをfalseにする
-		m_pCharacter->SetLandingFlag(false);
+		//m_pCharacter->SetLandingFlag(false);
 
 		//上方向に移動量を与える
 		vel.y = Character1Params::GetInstance()->JUMP_FORCE;
