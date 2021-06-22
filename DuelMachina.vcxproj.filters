@@ -1,0 +1,805 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>114a9b90-e1be-4b42-8042-66921a2f50ab</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>eb71bbb3-73ec-41a9-8c79-1d3960ca7bc7</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{b7385859-9939-4298-bfc6-d0335e9a4259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork">
+      <UniqueIdentifier>{c440b09f-cc6d-496b-8512-dfb6cac7f8a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager">
+      <UniqueIdentifier>{4e0f47dd-ed95-4f4a-b4d1-115219e48b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\DebugFont">
+      <UniqueIdentifier>{86e4683e-df29-4786-946f-8ec670ffdfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\Collision">
+      <UniqueIdentifier>{63e09f4a-bb22-4124-b47b-4e93083c5d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\DebugCamera">
+      <UniqueIdentifier>{c4ac1251-86e9-4ff0-9b16-4aa13269ea0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\EffectManager">
+      <UniqueIdentifier>{bc212bce-0c9e-4fb8-988b-d5964ec07026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\FbxModel">
+      <UniqueIdentifier>{0a0bf6c1-213d-47b7-997a-0d089ca52fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\FixCamera">
+      <UniqueIdentifier>{8d724463-e9b8-4f9a-a72a-1556c166de2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\FollowCamera">
+      <UniqueIdentifier>{1c162845-ab06-4153-8528-9ddb7fbd5e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\Math">
+      <UniqueIdentifier>{05442e87-563c-4e87-98f5-dd9afa7da908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\ModelObject">
+      <UniqueIdentifier>{7022a255-28a7-4ac2-992a-f6835bca9468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\MyEffect">
+      <UniqueIdentifier>{179c27c7-4a30-47d9-9c40-8dc453189f63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\Sprite2D">
+      <UniqueIdentifier>{c995c8d8-7ff7-4077-a363-903b61bd728a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\TitleScene">
+      <UniqueIdentifier>{45f6988d-cd82-40d6-bc78-9f06f9cb9e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\CharaSelectScene">
+      <UniqueIdentifier>{91e2c13f-7c5f-4940-9387-b8f335d474dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene">
+      <UniqueIdentifier>{0a1b171c-1f44-47b7-9dc9-d8bd78d4efa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character">
+      <UniqueIdentifier>{3e8e16b8-8b84-41ed-a14b-11a4704b470c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character1">
+      <UniqueIdentifier>{f5e9da04-05c7-405b-ab7d-a91474b0ed13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character2">
+      <UniqueIdentifier>{2d46ad5f-84a3-4bd4-b607-0e56895b3683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character3">
+      <UniqueIdentifier>{5a3a6e0f-35a2-4163-97cf-5d3dd25612f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\AttackManager">
+      <UniqueIdentifier>{34fb0fa2-9ca6-44a0-b565-6599e2ca19ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\ResultScene">
+      <UniqueIdentifier>{c3fb5295-6ffb-4542-8d6c-3263e5bc6dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character1\State">
+      <UniqueIdentifier>{88ec1abb-56ff-41e8-944d-b4ecb8d096c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character2\State">
+      <UniqueIdentifier>{249d0626-8690-4a36-be5b-4f7634917a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character3\State">
+      <UniqueIdentifier>{cfaa40a4-470f-48db-9f87-91259a0cd2b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character1\Attack">
+      <UniqueIdentifier>{6bf45bba-dc60-49bd-b03c-b99eb8f4e723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character2\Attack">
+      <UniqueIdentifier>{c7348aeb-32b7-48b2-b146-8c49443f3150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Character3\Attack">
+      <UniqueIdentifier>{6f262921-bba0-4821-a56a-b6a9030914ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\FadeManager">
+      <UniqueIdentifier>{10b7054d-8dd1-4fae-a490-71aad781cdab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\LoadDisplay">
+      <UniqueIdentifier>{276a523f-8adc-4dc7-9c44-6a6a6d897fda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FrameWork\FbxResourceManager">
+      <UniqueIdentifier>{ec8b459d-c8c6-4ae9-b2cd-f018b4092a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\BoostEffect">
+      <UniqueIdentifier>{860faf4a-04a8-45ec-b9ba-b93e7d73f971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\HitEffect">
+      <UniqueIdentifier>{ff6804f6-d296-46c9-b171-361844d73a21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\PlaySceneUI">
+      <UniqueIdentifier>{6276ef46-6f5c-43ed-af2c-eb71657199a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\Character\Interface">
+      <UniqueIdentifier>{67559c17-e97d-4724-8398-1dac9d998750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\PlaySceneManual">
+      <UniqueIdentifier>{f5d6d5bc-2670-437d-b518-b40e21e387b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\PlaySceneMenu">
+      <UniqueIdentifier>{2ac032d0-3ec4-48e5-b980-e10b153fa3a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneManager\PlayScene\PlaySceneStateManager">
+      <UniqueIdentifier>{001fa2e4-8122-4452-ad40-b7573c5b8a13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hlsl">
+      <UniqueIdentifier>{90dc61d5-49e6-4579-83da-cf5f372853c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\FrameWork\DebugFont\debugfont.h">
+      <Filter>Src\FrameWork\DebugFont</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\Collision\Collision.h">
+      <Filter>Src\FrameWork\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\DebugCamera\DebugCamera.h">
+      <Filter>Src\FrameWork\DebugCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\EffectManager\EffectManager.h">
+      <Filter>Src\FrameWork\EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\FixCamera\FixCamera.h">
+      <Filter>Src\FrameWork\FixCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\FollowCamera\FollowCamera.h">
+      <Filter>Src\FrameWork\FollowCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\Math\Math.h">
+      <Filter>Src\FrameWork\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\ModelObject\ModelObject.h">
+      <Filter>Src\FrameWork\ModelObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\MyEffect\MyEffect.h">
+      <Filter>Src\FrameWork\MyEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\Sprite2D\Sprite2D.h">
+      <Filter>Src\FrameWork\Sprite2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\SceneBase.h">
+      <Filter>Src\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\SceneManager.h">
+      <Filter>Src\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\TitleScene\TitleScene.h">
+      <Filter>Src\SceneManager\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\CharaSelectScene\CharaSelectScene.h">
+      <Filter>Src\SceneManager\CharaSelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterBase.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Character1.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Character2.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterFactory.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterID.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Character3.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayerID.h">
+      <Filter>Src\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\PlayScene.h">
+      <Filter>Src\SceneManager\PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\ResultScene\ResultScene.h">
+      <Filter>Src\SceneManager\ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\AttackManager\AttackManager.h">
+      <Filter>Src\SceneManager\PlayScene\AttackManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterStateBase.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterState.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterStateManagerBase.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterAttackManagerBase.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\AttackType.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\FbxModel\FbxModel.h">
+      <Filter>Src\FrameWork\FbxModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\CharacterAttackBase.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Effect.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\ChracterAnimationNumber.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\FadeManager\FadeManager.h">
+      <Filter>Src\FrameWork\FadeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\LoadDisplay\LoadDisplay.h">
+      <Filter>Src\FrameWork\LoadDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\FbxResourceManager\FbxResourceManager.h">
+      <Filter>Src\FrameWork\FbxResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\ShadowManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3BoostMoveState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3DamageState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3JumpState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3MoveBackState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3MoveFrontState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3SquatState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3StateManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3WaitState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackMiddleBottom.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackMiddleNeutral.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackMiddleSide.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackWeakBottom.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackWeakNeutral.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackWeakSide.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character3\Character3Params.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Character2Params.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2BoostMoveState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2DamageState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2JumpState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2MoveBackState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2MoveFrontState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2SquatState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2StateManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2WaitState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackMiddleBottom.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackMiddleNeutral.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackMiddleSide.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackWeakBottom.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackWeakNeutral.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackWeakSide.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Character1Params.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1BoostMoveState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1DamageState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1JumpState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1MoveBackState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1MoveFrontState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1SquatState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1StateManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1WaitState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackMiddleBottom.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackMiddleNeutral.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackMiddleSide.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackWeakBottom.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackWeakNeutral.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackWeakSide.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\BoostEffect.h">
+      <Filter>Src\SceneManager\PlayScene\BoostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\BoostEffectManager.h">
+      <Filter>Src\SceneManager\PlayScene\BoostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\HitEffect.h">
+      <Filter>Src\SceneManager\PlayScene\HitEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\HitEffectManager.h">
+      <Filter>Src\SceneManager\PlayScene\HitEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\UI\PlaySceneUI.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\ICharacter.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\ICharacterAttack.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\ICharacterStateManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Character\ICharacterState.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\IScene.h">
+      <Filter>Src\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Manual\PlaySceneManual.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneManual</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\Menu\PlaySceneMenu.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneFadeInState.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneFadeOutState.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneMainState.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneStateManager.h">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Cgdi.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Src\SceneManager\BinaryFile.h">
+      <Filter>Src\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Adx2.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Singleton.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\AlignedAllocationPolicy.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\CueSheet_0.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\NewProject_acf.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\StepTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\FrameWork\DebugFont\DebugFont.cpp">
+      <Filter>Src\FrameWork\DebugFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\Collision\Collision.cpp">
+      <Filter>Src\FrameWork\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\DebugCamera\DebugCamera.cpp">
+      <Filter>Src\FrameWork\DebugCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\EffectManager\EffectManager.cpp">
+      <Filter>Src\FrameWork\EffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\FixCamera\FixCamera.cpp">
+      <Filter>Src\FrameWork\FixCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\FollowCamera\FollowCamera.cpp">
+      <Filter>Src\FrameWork\FollowCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\Math\Math.cpp">
+      <Filter>Src\FrameWork\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\ModelObject\ModelObject.cpp">
+      <Filter>Src\FrameWork\ModelObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\MyEffect\MyEffect.cpp">
+      <Filter>Src\FrameWork\MyEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\Sprite2D\Sprite2D.cpp">
+      <Filter>Src\FrameWork\Sprite2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\SceneManager.cpp">
+      <Filter>Src\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\TitleScene\TitleScene.cpp">
+      <Filter>Src\SceneManager\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\CharaSelectScene\CharaSelectScene.cpp">
+      <Filter>Src\SceneManager\CharaSelectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\PlayScene.cpp">
+      <Filter>Src\SceneManager\PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\CharacterBase.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Character1.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Character2.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\CharacterFactory.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\AttackManager\AttackManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\AttackManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\ResultScene\ResultScene.cpp">
+      <Filter>Src\SceneManager\ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\FbxModel\FbxModel.cpp">
+      <Filter>Src\FrameWork\FbxModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Character3.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\ShadowManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Effect.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\FadeManager\FadeManager.cpp">
+      <Filter>Src\FrameWork\FadeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\LoadDisplay\LoadDisplay.cpp">
+      <Filter>Src\FrameWork\LoadDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\FbxResourceManager\FbxResourceManager.cpp">
+      <Filter>Src\FrameWork\FbxResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3BoostMoveState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3DamageState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3JumpState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3MoveBackState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3MoveFrontState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3SquatState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3StateManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\State\Character3WaitState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackMiddleBottom.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackMiddleNeutral.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackMiddleSide.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackWeakBottom.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackWeakNeutral.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Attack\Character3AttackWeakSide.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character3\Character3Params.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character3</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Character2Params.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2BoostMoveState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2DamageState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2JumpState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2MoveBackState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2MoveFrontState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2SquatState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2StateManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\State\Character2WaitState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackMiddleBottom.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackMiddleNeutral.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackMiddleSide.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackWeakBottom.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackWeakNeutral.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Attack\Character2AttackWeakSide.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character2\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Character1Params.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1BoostMoveState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1DamageState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1JumpState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1MoveBackState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1MoveFrontState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1SquatState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1StateManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\State\Character1WaitState.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackMiddleBottom.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackMiddleNeutral.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackMiddleSide.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackWeakBottom.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackWeakNeutral.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Attack\Character1AttackWeakSide.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\BoostEffect.cpp">
+      <Filter>Src\SceneManager\PlayScene\BoostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\BoostEffectManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\BoostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\HitEffect.cpp">
+      <Filter>Src\SceneManager\PlayScene\HitEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\HitEffectManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\HitEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\UI\PlaySceneUI.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\ICharacterAttackManager.h">
+      <Filter>Src\SceneManager\PlayScene\Character\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\SceneBase.cpp">
+      <Filter>Src\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Manual\PlaySceneManual.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneManual</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Menu\PlaySceneMenu.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneFadeInState.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneFadeOutState.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneMainState.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\PlaySceneStateManager\PlaySceneStateManager.cpp">
+      <Filter>Src\SceneManager\PlayScene\PlaySceneStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Cgdi.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Src\SceneManager\BinaryFile.cpp">
+      <Filter>Src\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Adx2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\DeviceResources.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="directx.ico">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="settings.manifest">
+      <Filter>Assets</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <MeshContentTask Include="Resources\Models\Shield.fbx">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Hlsl\BoostEffectGS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\BoostEffectPS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\BoostEffectVS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\EffectGS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\EffectVS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\FadeEffectPS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\HitEffectGS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\HitEffectPS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\HitEffectVS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\ShadowGS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\ShadowPS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Hlsl\ShadowVS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Hlsl\Particle.hlsli">
+      <Filter>Hlsl</Filter>
+    </None>
+  </ItemGroup>
+</Project>
