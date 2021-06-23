@@ -126,7 +126,7 @@ void Character1::Initialize()
 void Character1::Update(DX::StepTimer const& timer)
 {
 	//移動処理
-	Move();
+	if(GetPlayerID() == ePLAYER_ID::PLAYER_1)Move();
 	//基底クラスの更新
 	CharacterBase::Update(timer);
 	//ヒットエフェクトの発生位置の座標設定
@@ -331,24 +331,42 @@ void Character1::Move()
 
 	DirectX::SimpleMath::Vector3 vel = GetVel();
 
-	//移動制限内にいたら移動
-	if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right))
+	//ガード状態かやられ状態でなければ移動
+	if (GetCharaState() != eCHARACTER_STATE::BOOST_MOVE &&
+		GetCharaState() != eCHARACTER_STATE::DAMAGE &&
+		GetCharaState() != eCHARACTER_STATE::GUARD)
 	{
-		if (GetPos().x >= -Character1Params::MOVE_LIMIT_X || GetPos().x <= Character1Params::MOVE_LIMIT_X)
+		//右入力かつ移動制限内にいたら移動
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) &&
+			(GetPos().x <= Character1Params::MOVE_LIMIT_X))
 		{
-			//敵が右側にいたら右方向に移動
-			if (GetFrontVector().x > 0)
-			{
-				vel.x = Character1Params::GetInstance()->MOVE_FRONT_FORCE;
-			}
-			//敵が左側にいたら左方向に移動
-			else if (GetFrontVector().x < 0)
-			{
-				vel.x = -Character1Params::GetInstance()->MOVE_FRONT_FORCE;
-			}
-			SetVel(vel);
+			vel.x = 1;
 		}
+		//左入力かつ移動制限内にいたら移動
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) &&
+			(GetPos().x >= -Character1Params::MOVE_LIMIT_X))
+		{
+			vel.x = -1;
+		}
+		else vel.x = 0.0f;
+
+		//上入力かつ移動制限内にいたら移動
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character1Params::MOVE_LIMIT_Y)
+		{
+			vel.y = 1;
+		}
+		//下入力かつ移動制限内にいたら移動
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > -Character1Params::MOVE_LIMIT_Y)
+		{
+			vel.y = -1;
+		}
+		else vel.y = 0.0f;
+
+		vel.Normalize();
+
+		SetVel(vel * Character1Params::GetInstance()->MOVE_FRONT_FORCE);
 	}
+
 }
 
 ///////////////////////////

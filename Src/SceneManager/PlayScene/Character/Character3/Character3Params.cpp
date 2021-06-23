@@ -17,7 +17,7 @@ const float Character3Params::BODY_SIZE = 0.015f;
 //Y軸の角度
 const float Character3Params::ANGLE_Y = 30.0f;
 //移動できるX座標の最大値
-const float Character3Params::MOVE_LIMIT_X = 3.0f;
+const float Character3Params::MOVE_LIMIT_X = 3.5f;
 //移動できるY座標の最大値
 const float Character3Params::MOVE_LIMIT_Y = 2.5f;
 //体の当たり判定のサイズ(通常時)

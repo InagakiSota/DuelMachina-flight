@@ -50,7 +50,7 @@ void Character1JumpState::Update()
 
 		//ã•ûŒü‚ÉˆÚ“®—Ê‚ð—^‚¦‚é
 		vel.y = Character1Params::GetInstance()->JUMP_FORCE;
-		m_pCharacter->SetVel(vel);
+		//m_pCharacter->SetVel(vel);
 	}
 
 }

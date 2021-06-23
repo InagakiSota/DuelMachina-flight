@@ -52,7 +52,7 @@ void Character1MoveBackState::Update()
 		{
 			vel.x = Character1Params::GetInstance()->MOVE_BACK_FORCE;
 		}
-		m_pCharacter->SetVel(vel);
+		//m_pCharacter->SetVel(vel);
 	}
 
 

@@ -36,9 +36,9 @@ void Character1WaitState::Initialize(CharacterBase * pCharacterBase)
 //////////////////////////
 void Character1WaitState::Update()
 {
-	DirectX::SimpleMath::Vector3 vel = m_pCharacter->GetVel();
-	//‰¡‚ÌˆÚ“®—Ê‚ð0‚É‚·‚é
-	vel.x = 0;
-	m_pCharacter->SetVel(vel);
+	//DirectX::SimpleMath::Vector3 vel = m_pCharacter->GetVel();
+	////‰¡‚ÌˆÚ“®—Ê‚ð0‚É‚·‚é
+	//vel.x = 0;
+	//m_pCharacter->SetVel(vel);
 
 }

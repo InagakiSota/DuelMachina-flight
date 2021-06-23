@@ -53,7 +53,7 @@ void Character1MoveFrontState::Update()
 		{
 			vel.x = -Character1Params::GetInstance()->MOVE_FRONT_FORCE;
 		}
-		m_pCharacter->SetVel(vel);
+		//m_pCharacter->SetVel(vel);
 	}
 
 }

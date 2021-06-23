@@ -210,12 +210,16 @@ void CharacterBase::Update(DX::StepTimer const& timer)
 	}
 
 	//移動制限
-	if (m_pos.x > -MOVE_LIMIT_X || m_pos.x < MOVE_LIMIT_X)m_vel.x = 0.0f;
-	if (m_pos.x < -MOVE_LIMIT_X) m_pos.x = -MOVE_LIMIT_X;
-	if (m_pos.x > MOVE_LIMIT_X) m_pos.x = MOVE_LIMIT_X;
+	//if (m_pos.x > -MOVE_LIMIT_X || m_pos.x < MOVE_LIMIT_X)m_vel.x = 0.0f;
+	//if (m_pos.x < -MOVE_LIMIT_X) m_pos.x = -MOVE_LIMIT_X;
+	//if (m_pos.x > MOVE_LIMIT_X) m_pos.x = MOVE_LIMIT_X;
 
 	//キャラのステート更新
 	m_pStateManager->Update(m_charaState);
+
+	//ガード状態か攻撃中なら移動量を0にする
+	if (m_charaState == eCHARACTER_STATE::GUARD||
+		m_isAttacking == true)m_vel = DirectX::SimpleMath::Vector3::Zero;
 
 	//回転行列を作成
 	DirectX::SimpleMath::Matrix rotY = DirectX::SimpleMath::Matrix::CreateRotationY(DirectX::XMConvertToRadians(m_angleY));
@@ -712,16 +716,25 @@ void CharacterBase::StateManager()
 		//やられ状態でなければ各状態の処理をする
 		if (m_charaState != eCHARACTER_STATE::DAMAGE)
 		{
-			if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Up) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Left) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Down) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Right) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::LeftShift) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Space) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) != true)
+			//入力無しで待機状態
+			if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::LeftShift) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Space) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::X) != true &&
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Z) != true)
 			{
 				m_charaState = eCHARACTER_STATE::WAIT;
+			}
+
+			if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) == true ||
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) == true ||
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) == true ||
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) == true)
+			{
+				m_charaState = eCHARACTER_STATE::MOVE;
 			}
 
 			//左Shiftでガード
@@ -882,7 +895,7 @@ void CharacterBase::Attack()
 
 		//弱下攻撃
 		if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) &&
-			m_charaState == eCHARACTER_STATE::SQUAT &&
+			keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) &&
 			m_charaState != eCHARACTER_STATE::GUARD &&
 			m_charaState != eCHARACTER_STATE::DAMAGE &&
 			m_isAttackUse[static_cast<int>(eATTACK_TYPE::WEAK_BOTTOM)] == false &&
@@ -893,7 +906,8 @@ void CharacterBase::Attack()
 
 		//弱横攻撃
 		if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) &&
-			m_charaState == eCHARACTER_STATE::MOVE_FRONT &&
+			(keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) ||
+			keyState.IsKeyDown(DirectX::Keyboard::Keys::Right)) &&
 			m_charaState != eCHARACTER_STATE::GUARD &&
 			m_charaState != eCHARACTER_STATE::DAMAGE &&
 			m_isAttackUse[static_cast<int>(eATTACK_TYPE::WEAK_SIDE)] == false &&
@@ -915,7 +929,7 @@ void CharacterBase::Attack()
 
 		//中下攻撃
 		if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) &&
-			m_charaState == eCHARACTER_STATE::SQUAT &&
+			keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) &&
 			m_charaState != eCHARACTER_STATE::GUARD &&
 			m_charaState != eCHARACTER_STATE::DAMAGE &&
 			m_isAttackUse[static_cast<int>(eATTACK_TYPE::MIDDLE_BOTTOM)] == false &&
@@ -926,7 +940,8 @@ void CharacterBase::Attack()
 
 		//中横攻撃
 		if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) &&
-			m_charaState == eCHARACTER_STATE::MOVE_FRONT &&
+			(keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) ||
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Right)) &&
 			m_charaState != eCHARACTER_STATE::GUARD &&
 			m_charaState != eCHARACTER_STATE::DAMAGE &&
 			m_isAttackUse[static_cast<int>(eATTACK_TYPE::MIDDLE_SIDE)] == false &&
@@ -1049,51 +1064,51 @@ void CharacterBase::AI()
 		{
 
 			//待機
-	case 0:
-	{
-		m_charaState = eCHARACTER_STATE::WAIT;
-		break;
-	}
-	//前進
-	case 1:
-	{
-		m_charaState = eCHARACTER_STATE::MOVE_FRONT;
-		break;
-	}
-	//後退
-	case 2:
-	{
-		m_charaState = eCHARACTER_STATE::MOVE_BACK;
-		break;
-	}
-	//ジャンプ
-	case 3:
-	{
-		m_charaState = eCHARACTER_STATE::JUMP;
-		break;
-	}
-	//しゃがみ
-	case 4:
-	{
-		m_charaState = eCHARACTER_STATE::SQUAT;
-		break;
-	}
-	//ガード
-	case 5:
-	{
-		m_charaState = eCHARACTER_STATE::GUARD;
-		break;
-	}
-	//ブースト移動
-	case 7:
-	{
-		m_charaState = eCHARACTER_STATE::BOOST_MOVE;
-		break;
+			case 0:
+			{
+				m_charaState = eCHARACTER_STATE::WAIT;
+				break;
+			}
+			//前進
+			case 1:
+			{
+				m_charaState = eCHARACTER_STATE::MOVE_FRONT;
+				break;
+			}
+			//後退
+			case 2:
+			{
+				m_charaState = eCHARACTER_STATE::MOVE_BACK;
+				break;
+			}
+			//ジャンプ
+			case 3:
+			{
+				m_charaState = eCHARACTER_STATE::JUMP;
+				break;
+			}
+			//しゃがみ
+			case 4:
+			{
+				m_charaState = eCHARACTER_STATE::SQUAT;
+				break;
+			}
+			//ガード
+			case 5:
+			{
+				m_charaState = eCHARACTER_STATE::GUARD;
+				break;
+			}
+			//ブースト移動
+			case 7:
+			{
+				m_charaState = eCHARACTER_STATE::BOOST_MOVE;
+				break;
 
-	}
-	default:
-		break;
-		}
+			}
+			default:
+				break;
+			}
 	}
 
 }

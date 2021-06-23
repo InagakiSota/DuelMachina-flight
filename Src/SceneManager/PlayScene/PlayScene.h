@@ -248,9 +248,6 @@ private:
 
 	//デバッグカメラ
 	std::unique_ptr<DebugCamera> m_pDebugCamera;
-
-	//足元の影のエフェクト
-	std::unique_ptr<ShadowManager> m_pShadowManager[PLAYER_NUM];
 	
 	//攻撃のマネージャー
 	//std::unique_ptr<AttackManager> m_pAttackManager;

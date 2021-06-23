@@ -141,7 +141,7 @@ void PlaySceneMainState::Main(DX::StepTimer const& timer)
 
 	for (int i = 0; i < PlayScene::PLAYER_NUM; i++)
 	{
-		//プレイヤーの準備
+		//プレイヤーの更新
 		m_pPlayScene->GetPlayer(i)->Update(timer);
 	}
 

@@ -56,7 +56,6 @@ PlayScene::PlayScene()
 	m_space(nullptr),
 	m_spaceWorld{},
 	//m_pAttackManager(nullptr),
-	m_pShadowManager{},
 	//基底クラスのコンストラクタ
 	SceneBase::SceneBase()
 {
@@ -82,7 +81,6 @@ PlayScene::~PlayScene()
 	for (int i = 0; i < PLAYER_NUM; i++)
 	{
 		m_pPlayer[i] = nullptr;
-		m_pShadowManager[i].reset();
 	}
 
 	//攻撃マネージャーのインスタンスの解放
@@ -114,8 +112,58 @@ void PlayScene::Initialize()
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)] = CharacterFactory::CreatePlayer2();
 
 	//初期座標の設定
-	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetStartPos(DirectX::SimpleMath::Vector3(-2.0f, 1.0f, 0.0f));
-	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetStartPos(DirectX::SimpleMath::Vector3(2.0f, 1.0f, 0.0f));
+	//プレイヤー１
+	switch (m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->GetCharacterID())
+	{
+		//キャラクター１
+		case eCHARACTER_ID::CHARACTER_1:
+		{
+			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetStartPos(DirectX::SimpleMath::Vector3(-2.0f, 0.0f, 0.0f));
+
+			break;
+		}
+		//キャラクター２
+		case eCHARACTER_ID::CHARACTER_2:
+		{
+			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetStartPos(DirectX::SimpleMath::Vector3(-2.0f, 1.0f, 0.0f));
+
+			break;
+		}
+		//キャラクター３
+		case eCHARACTER_ID::CHARACTER_3:
+		{
+			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetStartPos(DirectX::SimpleMath::Vector3(-2.0f, 1.0f, 0.0f));
+			break;
+		}
+		default:
+			break;
+	}
+	//プレイヤー2
+	switch (m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->GetCharacterID())
+	{
+		//キャラクター１
+		case eCHARACTER_ID::CHARACTER_1:
+		{
+			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetStartPos(DirectX::SimpleMath::Vector3(2.0f, 0.0f, 0.0f));
+
+			break;
+		}
+		//キャラクター２
+		case eCHARACTER_ID::CHARACTER_2:
+		{
+			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetStartPos(DirectX::SimpleMath::Vector3(2.0f, 1.0f, 0.0f));
+
+			break;
+		}
+		//キャラクター３
+		case eCHARACTER_ID::CHARACTER_3:
+		{
+			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetStartPos(DirectX::SimpleMath::Vector3(2.0f, 1.0f, 0.0f));
+			break;
+		}
+		default:
+			break;
+	}
 
 	//プレイヤーにプレイシーンのポインタを渡す
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetPlayScene(this);
@@ -136,11 +184,7 @@ void PlayScene::Initialize()
 		m_pPlayer[i]->SetAttackManager(AttackManager::GetInstance());
 		//プレイヤーの勝利本数の初期化
 		m_playerWinNum[i] = 0;
-		
-		//足元の影の読み込み、初期化
-		m_pShadowManager[i] = std::make_unique<ShadowManager>();
-		m_pShadowManager[i]->Initialize(1,10,DirectX::SimpleMath::Vector3::Zero);
-
+	
 	}
 
 	//カメラの注視点の初期化
@@ -188,8 +232,6 @@ void PlayScene::Update(DX::StepTimer const& timer)
 
 	for (int i = 0; i < PLAYER_NUM; i++)
 	{	
-		//足元の影のエフェクトの更新
-		m_pShadowManager[i]->Update(timer, m_pPlayer[i]->GetPos());
 		//体力のバッファの同期
 		m_playerHpBuffer[i] = m_pPlayer[i]->GetHP();
 	}
@@ -234,14 +276,6 @@ void PlayScene::Render()
 	//天球の描画
 	m_space->Render(GetView(), GetProj());
 
-
-	for (int i = 0; i < PLAYER_NUM; i++)
-	{
-		//足元の影のエフェクトの描画
-		m_pShadowManager[i]->Render(GetView(), GetProj());
-	}
-
-
 	//プレイヤー１の描画
 	if (m_isResult == false || m_playerWinNum[static_cast<int>(ePLAYER_ID::PLAYER_2)] < WIN_NUM)
 	{
@@ -285,15 +319,12 @@ void PlayScene::Finalize()
 	m_sprite2D.reset();
 	for (int i = 0; i < PLAYER_NUM; i++)
 	{
-
 		if (m_pPlayer[i] != nullptr)
 		{
 			//delete m_pPlayer[i];
 			m_pPlayer[i] = nullptr;
 
 		}
-		//足元の影のエフェクトの終了処理
-		m_pShadowManager[i]->Finalize();
 
 	}
 
