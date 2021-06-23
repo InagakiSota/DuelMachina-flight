@@ -304,15 +304,6 @@ void PlayScene::Render()
 //////////////////////////
 void PlayScene::Finalize()
 {
-	//プレイヤーの終了処理
-	for (int i = 0; i < PLAYER_NUM; i++)
-	{
-		if (m_pPlayer[i] != nullptr)
-		{
-			m_pPlayer[i]->Finalize();
-		}
-	}
-
 	//m_pFbx.reset();
 	m_pDebugCamera.reset();
 	m_space.reset();
@@ -321,14 +312,13 @@ void PlayScene::Finalize()
 	{
 		if (m_pPlayer[i] != nullptr)
 		{
+			m_pPlayer[i]->Finalize();
 			//delete m_pPlayer[i];
 			m_pPlayer[i] = nullptr;
 
 		}
 
 	}
-
-
 
 	DebugFont::Dispose();
 

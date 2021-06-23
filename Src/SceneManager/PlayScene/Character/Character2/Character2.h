@@ -46,6 +46,8 @@ public:
 	void ChangeAnimation(const int& animationStack) override;
 
 private:
+	//移動
+	void Move() override;
 	//攻撃
 	void Attack()override;
 	//キャラのステート管理
