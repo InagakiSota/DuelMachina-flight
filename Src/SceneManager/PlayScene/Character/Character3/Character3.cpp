@@ -112,6 +112,9 @@ void Character3::Initialize()
 //////////////////////////
 void Character3::Update(DX::StepTimer const& timer)
 {
+	//移動処理
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1)Move();
+	
 	//基底クラスの更新
 	CharacterBase::Update(timer);
 
@@ -301,6 +304,55 @@ void Character3::ChangeAnimation(const int & animationStack)
 	CharacterBase::ChangeAnimation(animationStack);
 }
 
+///////////////////////////
+//アニメーションの切り替え
+//引数:切り替えるアニメーションの番号
+//戻り値:なし
+//////////////////////////
+void Character3::Move()
+{
+	//キーの状態取得
+	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
+
+	DirectX::SimpleMath::Vector3 vel = GetVel();
+
+	//ガード状態かやられ状態でなければ移動
+	if (GetCharaState() != eCHARACTER_STATE::BOOST_MOVE &&
+		GetCharaState() != eCHARACTER_STATE::DAMAGE &&
+		GetCharaState() != eCHARACTER_STATE::GUARD)
+	{
+		//右入力かつ移動制限内にいたら移動
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) &&
+			(GetPos().x <= Character3Params::MOVE_LIMIT_X))
+		{
+			vel.x = 1;
+		}
+		//左入力かつ移動制限内にいたら移動
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) &&
+			(GetPos().x >= -Character3Params::MOVE_LIMIT_X))
+		{
+			vel.x = -1;
+		}
+		else vel.x = 0.0f;
+
+		//上入力かつ移動制限内にいたら移動
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character3Params::MOVE_LIMIT_Y)
+		{
+			vel.y = 1;
+		}
+		//下入力かつ移動制限内にいたら移動
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > -Character3Params::MOVE_LIMIT_Y)
+		{
+			vel.y = -1;
+		}
+		else vel.y = 0.0f;
+
+		vel.Normalize();
+
+		SetVel(vel * Character3Params::GetInstance()->MOVE_FRONT_FORCE);
+	}
+
+}
 
 ///////////////////////////
 //攻撃

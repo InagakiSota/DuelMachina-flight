@@ -66,6 +66,19 @@ void Character3BoostMoveState::Update()
 	}
 	else vel.x = 0.0f;
 
+	//上入力
+	if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && m_pCharacter->GetPos().y < Character3Params::MOVE_LIMIT_Y)
+	{
+		vel.y = Character3Params::GetInstance()->MOVE_BOOST_FORCE;
+	}
+	//下入力
+	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && m_pCharacter->GetPos().y > -Character3Params::MOVE_LIMIT_Y)
+	{
+		vel.y = -Character3Params::GetInstance()->MOVE_BOOST_FORCE;
+	}
+	else vel.y = 0.0f;
+
+
 	m_pCharacter->SetVel(vel);
 
 	//スペースキーを放すかブースト容量が0になったら元のステートに戻る

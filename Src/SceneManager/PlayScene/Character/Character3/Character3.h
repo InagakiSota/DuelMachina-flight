@@ -43,6 +43,8 @@ public:
 	void ChangeAnimation(const int& animationStack) override;
 
 private:
+	//ˆÚ“®
+	void Move();
 
 	//UŒ‚
 	void Attack() override;

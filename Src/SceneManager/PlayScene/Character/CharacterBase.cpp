@@ -729,19 +729,18 @@ void CharacterBase::StateManager()
 				m_charaState = eCHARACTER_STATE::WAIT;
 			}
 
-			if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) == true ||
+			if ((keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) == true ||
 				keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) == true ||
 				keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) == true ||
-				keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) == true)
+				keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) == true) &&
+				m_charaState != eCHARACTER_STATE::GUARD)
 			{
 				m_charaState = eCHARACTER_STATE::MOVE;
 			}
 
 			//ç∂ShiftÇ≈ÉKÅ[Éh
 			if ((m_charaState == eCHARACTER_STATE::WAIT ||
-				m_charaState == eCHARACTER_STATE::SQUAT ||
-				m_charaState == eCHARACTER_STATE::MOVE_BACK ||
-				m_charaState == eCHARACTER_STATE::MOVE_FRONT) &&
+				m_charaState == eCHARACTER_STATE::MOVE) &&
 				keyState.IsKeyDown(DirectX::Keyboard::Keys::LeftShift))
 			{
 				m_charaState = eCHARACTER_STATE::GUARD;
