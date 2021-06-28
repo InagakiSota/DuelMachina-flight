@@ -45,8 +45,10 @@ public:
 	static const DirectX::SimpleMath::Vector3 CAMERA_POS;
 	//移動できるX座標の最大値
 	static const float MOVE_LIMIT_X;
-	//移動できるY座標の最大値
-	static const float MOVE_LIMIT_Y;
+	//移動できるY座標の上の最大値
+	static const float MOVE_LIMIT_TOP;
+	//移動できるY座標の下の最大値
+	static const float MOVE_LIMIT_BOTTOM;
 	//シールドのY座標
 	static const float SHIELD_POS_Y;
 

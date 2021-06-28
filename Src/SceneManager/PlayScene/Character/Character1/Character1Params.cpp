@@ -31,8 +31,11 @@ const DirectX::SimpleMath::Vector3 Character1Params::CAMERA_POS = DirectX::Simpl
 
 //移動できるX座標の最大値
 const float Character1Params::MOVE_LIMIT_X = 3.5f;
-//移動できるY座標の最大値
-const float Character1Params::MOVE_LIMIT_Y = 2.5f;
+//移動できるY座標の上の限界値
+const float Character1Params::MOVE_LIMIT_TOP = 2.0f;
+//移動できるY座標の下の限界値
+const float Character1Params::MOVE_LIMIT_BOTTOM = -2.0f;
+
 
 //体の当たり判定のサイズ
 const DirectX::SimpleMath::Vector3 Character1Params::MOVE_BOOST_BODY_SIDE = DirectX::SimpleMath::Vector3(0.30f, 0.5f, 0.2f);

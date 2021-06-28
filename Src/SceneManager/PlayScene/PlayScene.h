@@ -219,6 +219,8 @@ private:
 	static const float ROUND_CHANGE_TIME;
 	//カウントダウンの時間
 	static const float COUNT_DOWN_TIME;
+	//カメラの座標
+	static const DirectX::SimpleMath::Vector3 CAMERA_POS;
 
 	//std::unique_ptr<DirectX::CommonStates>m_states;
 	//std::unique_ptr<DirectX::IEffectFactory>m_fxFactory;

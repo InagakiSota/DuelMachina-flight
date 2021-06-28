@@ -48,8 +48,10 @@ public:
 	static const DirectX::SimpleMath::Vector3 MOVE_BOOST_BODY_SIDE;
 	//移動できるX座標の最大値
 	static const float MOVE_LIMIT_X;
-	//移動できるY座標の最大値
-	static const float MOVE_LIMIT_Y;
+	//移動できるY座標の上の限界値
+	static const float MOVE_LIMIT_TOP;
+	//移動できるY座標の下の限界値
+	static const float MOVE_LIMIT_BOTTOM;
 
 	//しゃがみ状態の体のサイズ
 	static const DirectX::SimpleMath::Vector3 BODY_COLL_SIZE_SQUAT;

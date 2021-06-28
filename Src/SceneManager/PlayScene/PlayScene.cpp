@@ -49,6 +49,8 @@
  const float PlayScene::TIME_UP_TIME = 3.0f;
  //ラウンド切り替え時の時間
  const float PlayScene::ROUND_CHANGE_TIME = 1.0f;
+ //カメラの座標
+ const DirectX::SimpleMath::Vector3 PlayScene::CAMERA_POS = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 6.5f);
 
 //コンストラクタ
 PlayScene::PlayScene()
@@ -202,6 +204,9 @@ void PlayScene::Initialize()
 	//敵のポインタ取得
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetEnemy(m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]);
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetEnemy(m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]);
+
+	//カメラの座標指定
+	SetCameraPos(PlayScene::CAMERA_POS);
 
 	//メニュークラスの読み込み
 	m_pPlaySceneMenu = std::make_unique<PlaySceneMenu>();
@@ -366,9 +371,10 @@ void PlayScene::Reset()
 	//制限時間を最大値に設定
 	m_time = PlayScene::TIME_MAX;
 
+
 	//カメラの注視点の初期化
 	SetTargetPos(DirectX::SimpleMath::Vector3::Zero);
-	SetCameraPos(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 6.0f));
+	SetCameraPos(PlayScene::CAMERA_POS);
 
 	//UIクラスのリセット
 	m_pPlaySceneUI->Reset();

@@ -350,12 +350,12 @@ void Character2::Move()
 		else vel.x = 0.0f;
 
 		//ã“ü—Í‚©‚ÂˆÚ“®§ŒÀ“à‚É‚¢‚½‚çˆÚ“®
-		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character2Params::MOVE_LIMIT_Y)
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character2Params::MOVE_LIMIT_TOP)
 		{
 			vel.y = 1;
 		}
 		//‰º“ü—Í‚©‚ÂˆÚ“®§ŒÀ“à‚É‚¢‚½‚çˆÚ“®
-		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > -Character2Params::MOVE_LIMIT_Y)
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > Character2Params::MOVE_LIMIT_BOTTOM)
 		{
 			vel.y = -1;
 		}
