@@ -365,7 +365,7 @@ void PlaySceneUI::Render()
 		for (int i = 0; i < PLAYER_NUM; i++)
 		{
 			//“ªã‚Ì‰æ‘œ
-			m_pOverHeadSprite[i]->Draw(true);
+			//m_pOverHeadSprite[i]->Draw(true);
 		}
 
 

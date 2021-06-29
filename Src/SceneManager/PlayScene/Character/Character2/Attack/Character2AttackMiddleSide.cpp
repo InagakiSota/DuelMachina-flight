@@ -8,6 +8,7 @@
 #include "../../CharacterBase.h"
 #include "../../../AttackManager/AttackManager.h"
 #include "Src/Cgdi.h"
+#include "../Character2Params.h"
 
 //攻撃力
 const int Character2AttackMiddleSide::POWER = 7;
@@ -111,7 +112,12 @@ void Character2AttackMiddleSide::Update()
 
 		//プレイヤーの移動量を設定
 		DirectX::SimpleMath::Vector3 vel = m_pCharacter->GetVel();
-		vel.x = Character2AttackMiddleSide::PLAYER_VEL_X * m_pCharacter->GetAttackFront().x;
+
+		if (m_pCharacter->GetPos().x > -Character2Params::GetInstance()->MOVE_LIMIT_X &&
+			m_pCharacter->GetPos().x < Character2Params::GetInstance()->MOVE_LIMIT_X)
+		{
+			vel.x = Character2AttackMiddleSide::PLAYER_VEL_X * m_pCharacter->GetAttackFront().x;
+		}
 
 		//タイマーが一定時間経ったら消す
 		if (m_pAttack->timer >= Character2AttackMiddleSide::VANISH_TIME)

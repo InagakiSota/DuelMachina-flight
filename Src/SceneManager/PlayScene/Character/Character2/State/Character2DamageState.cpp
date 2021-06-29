@@ -46,6 +46,7 @@ void Character2DamageState::Initialize(CharacterBase * pCharacterBase)
 //////////////////////////
 void Character2DamageState::Update()
 {
+	m_pCharacter->SetVel(DirectX::SimpleMath::Vector3::Zero);
 	DirectX::SimpleMath::Vector3 vel = m_pCharacter->GetVel();
 
 	m_pCharacter->SetDamageTimer(m_pCharacter->GetDamageTimer() + KNOCK_BACK_VEL_START);

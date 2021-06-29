@@ -609,10 +609,6 @@ void CharacterBase::Ready(DX::StepTimer const& timer)
 	//ステートの管理
 	if (m_hp > 0)StateManager();
 
-	//移動制限
-	if (m_pos.x > -MOVE_LIMIT_X || m_pos.x < MOVE_LIMIT_X)m_vel.x = 0.0f;
-	if (m_pos.x < -MOVE_LIMIT_X) m_pos.x = -MOVE_LIMIT_X;
-	if (m_pos.x > MOVE_LIMIT_X) m_pos.x = MOVE_LIMIT_X;
 
 	//キャラのステート更新
 	m_pStateManager->Update(m_charaState);

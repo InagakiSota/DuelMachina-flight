@@ -126,7 +126,7 @@ void Character1::Initialize()
 void Character1::Update(DX::StepTimer const& timer)
 {
 	//移動処理
-	if(GetPlayerID() == ePLAYER_ID::PLAYER_1)Move();
+	if(GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
 	//基底クラスの更新
 	CharacterBase::Update(timer);
 	//ヒットエフェクトの発生位置の座標設定
@@ -233,6 +233,8 @@ void Character1::HitAttack()
 //////////////////////////
 void Character1::Ready(DX::StepTimer const& timer)
 {
+	//移動処理
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
 	//基底クラスの準備関数
 	CharacterBase::Ready(timer);
 

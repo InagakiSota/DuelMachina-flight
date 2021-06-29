@@ -113,7 +113,7 @@ void Character2::Initialize()
 void Character2::Update(DX::StepTimer const& timer)
 {	
 	//移動処理
-	if (GetPlayerID() == ePLAYER_ID::PLAYER_1)Move();
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
 	
 	//基底クラスの更新
 	CharacterBase::Update(timer);
@@ -219,6 +219,8 @@ void Character2::HitAttack()
 //////////////////////////
 void Character2::Ready(DX::StepTimer const& timer)
 {
+	//移動処理
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
 	//基底クラスの準備関数
 	CharacterBase::Ready(timer);
 

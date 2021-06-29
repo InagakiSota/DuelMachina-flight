@@ -78,7 +78,7 @@ void Character2BoostMoveState::Update()
 		vel.y = Character2Params::GetInstance()->MOVE_BOOST_FORCE;
 	}
 	//‰º“ü—Í
-	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) > Character2Params::MOVE_LIMIT_BOTTOM)
+	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && m_pCharacter->GetPos().y > Character2Params::MOVE_LIMIT_BOTTOM)
 	{
 		vel.y = -Character2Params::GetInstance()->MOVE_BOOST_FORCE;
 	}

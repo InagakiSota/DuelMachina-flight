@@ -50,7 +50,7 @@
  //ラウンド切り替え時の時間
  const float PlayScene::ROUND_CHANGE_TIME = 1.0f;
  //カメラの座標
- const DirectX::SimpleMath::Vector3 PlayScene::CAMERA_POS = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 6.5f);
+ const DirectX::SimpleMath::Vector3 PlayScene::CAMERA_POS = DirectX::SimpleMath::Vector3(0.0f, 0.0f, 7.0f);
 
 //コンストラクタ
 PlayScene::PlayScene()
@@ -107,7 +107,6 @@ void PlayScene::Initialize()
 	m_space->Create(gdi->GetDeviceResources(), L"Resources/Models/Space.cmo");
 	
 	m_isResult = false;
-
 
 	//プレイヤーの作成
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)] = CharacterFactory::CreatePlayer1();
@@ -191,6 +190,8 @@ void PlayScene::Initialize()
 
 	//カメラの注視点の初期化
 	SetTargetPos(DirectX::SimpleMath::Vector3::Zero);
+	//カメラの座標指定
+	SetCameraPos(PlayScene::CAMERA_POS);
 
 	//プレイシーンのステートを初期化
 	m_playSceneState = ePLAY_SCENE_STATE::COUNT_DOWN;
@@ -204,9 +205,6 @@ void PlayScene::Initialize()
 	//敵のポインタ取得
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetEnemy(m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]);
 	m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetEnemy(m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]);
-
-	//カメラの座標指定
-	SetCameraPos(PlayScene::CAMERA_POS);
 
 	//メニュークラスの読み込み
 	m_pPlaySceneMenu = std::make_unique<PlaySceneMenu>();
@@ -425,7 +423,6 @@ void PlayScene::Result(DX::StepTimer const& timer)
 
 			//プレイヤー２を勝利状態にする
 			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetCharaState(eCHARACTER_STATE::WIN);
-			//m_pPlayer[0]->ChangeAnimation(14);
 			SetCameraPos(DirectX::SimpleMath::Vector3(
 				m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->GetPos().x,
 				m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->GetPos().y - 1.0f,

@@ -30,8 +30,6 @@ public:
 	static const float BODY_SIZE;
 	//Y軸の角度
 	static const float ANGLE_Y;
-	//移動できるY座標の最大値
-	static const float MOVE_LIMIT_Y;
 	//体の当たり判定のサイズ(通常時)
 	static const DirectX::SimpleMath::Vector3 BODY_COLL_SIZE_NORMAL;
 	//体の当たり判定のサイズ(しゃがみ)

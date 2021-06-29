@@ -113,7 +113,7 @@ void Character3::Initialize()
 void Character3::Update(DX::StepTimer const& timer)
 {
 	//移動処理
-	if (GetPlayerID() == ePLAYER_ID::PLAYER_1)Move();
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
 	
 	//基底クラスの更新
 	CharacterBase::Update(timer);
@@ -224,6 +224,8 @@ void Character3::HitAttack()
 //////////////////////////
 void Character3::Ready(DX::StepTimer const& timer)
 {	
+	//移動処理
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
 	//基底クラスの準備関数
 	CharacterBase::Ready(timer);
 
@@ -336,12 +338,12 @@ void Character3::Move()
 		else vel.x = 0.0f;
 
 		//上入力かつ移動制限内にいたら移動
-		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character3Params::MOVE_LIMIT_Y)
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character3Params::MOVE_LIMIT_TOP)
 		{
 			vel.y = 1;
 		}
 		//下入力かつ移動制限内にいたら移動
-		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > -Character3Params::MOVE_LIMIT_Y)
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > Character3Params::MOVE_LIMIT_BOTTOM)
 		{
 			vel.y = -1;
 		}

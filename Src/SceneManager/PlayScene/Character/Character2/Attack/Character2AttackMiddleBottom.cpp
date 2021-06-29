@@ -9,6 +9,7 @@
 #include "../../CharacterBase.h"
 #include "../../../AttackManager/AttackManager.h"
 #include "Src/Cgdi.h"
+#include "../Character2Params.h"
 
 //UŒ‚—Í
 const int Character2AttackMiddleBottom::POWER = 10;
@@ -128,6 +129,11 @@ void Character2AttackMiddleBottom::Update()
 		{
 			vel.y = Character2AttackMiddleBottom::PLAYER_VEL_X_DOWN;
 			//if (m_pCharacter->GetLandingFlag() == true)vel.y = 0.0f;
+
+			if (Character2Params::GetInstance()->MOVE_LIMIT_BOTTOM >= m_pCharacter->GetPos().y)
+			{
+				vel.y = 0.0f;
+			}
 		}
 
 		//ˆê’èŠÔŒo‚Á‚½‚çÁ‚·

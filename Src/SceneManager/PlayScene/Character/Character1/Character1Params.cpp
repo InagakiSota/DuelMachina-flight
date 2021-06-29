@@ -30,7 +30,7 @@ const DirectX::SimpleMath::Vector3 Character1Params::CAMERA_POS = DirectX::Simpl
 
 
 //移動できるX座標の最大値
-const float Character1Params::MOVE_LIMIT_X = 3.5f;
+const float Character1Params::MOVE_LIMIT_X = 4.5f;
 //移動できるY座標の上の限界値
 const float Character1Params::MOVE_LIMIT_TOP = 2.0f;
 //移動できるY座標の下の限界値

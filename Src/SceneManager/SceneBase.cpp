@@ -80,7 +80,7 @@ void SceneBase::Update(DX::StepTimer const& timer)
 
 
 	//if(m_isShake == false)
-	//	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(m_cameraPos, m_targetPos, DirectX::SimpleMath::Vector3::UnitY);
+	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(m_cameraPos, m_targetPos, DirectX::SimpleMath::Vector3::UnitY);
 	DoShake(timer);
 }
 
