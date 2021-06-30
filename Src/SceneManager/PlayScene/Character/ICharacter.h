@@ -62,6 +62,8 @@ public:
 	////////////////////////////////
 	//移動
 	virtual void Move() = 0;
+	//AIの移動
+	virtual void MoveAI() = 0;
 	//プレイシーンのポインタの取得
 	virtual void SetPlayScene(SceneBase* pPlayScene) = 0;
 	//3Dモデルのポインタの取得

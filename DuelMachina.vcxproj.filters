@@ -509,9 +509,6 @@
     <ClCompile Include="Src\SceneManager\PlayScene\Character\CharacterBase.cpp">
       <Filter>Src\SceneManager\PlayScene\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Character1.cpp">
-      <Filter>Src\SceneManager\PlayScene\Character\Character1</Filter>
-    </ClCompile>
     <ClCompile Include="Src\SceneManager\PlayScene\Character\Character2\Character2.cpp">
       <Filter>Src\SceneManager\PlayScene\Character\Character2</Filter>
     </ClCompile>
@@ -743,6 +740,9 @@
     <ClCompile Include="Src\DeviceResources.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="Src\SceneManager\PlayScene\Character\Character1\Character1.cpp">
+      <Filter>Src\SceneManager\PlayScene\Character\Character1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="directx.ico">
@@ -794,6 +794,9 @@
       <Filter>Hlsl</Filter>
     </FxCompile>
     <FxCompile Include="Hlsl\ShadowVS.hlsl">
+      <Filter>Hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\shader.hlsl">
       <Filter>Hlsl</Filter>
     </FxCompile>
   </ItemGroup>

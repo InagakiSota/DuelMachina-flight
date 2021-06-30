@@ -42,6 +42,22 @@ public:
 	//カメラの座標
 	static const DirectX::SimpleMath::Vector3 CAMERA_POS;
 
+	//X方向の移動方向
+	enum class eMOVE_STATE_X
+	{
+		NONE = 0,
+		RIGHT,		//右
+		LEFT		//左
+	};
+	//Y方向の移動方向
+	enum class eMOVE_STATE_Y
+	{
+		NONE = 0,
+		UP,			//上
+		DOWN		//下
+	};
+
+
 	//コンストラクタ
 	CharacterBase(ePLAYER_ID playerID);
 	//デストラクタ
@@ -429,10 +445,8 @@ public:
 
 	 //当たり判定の更新
 	 void CollisionUpdate() {}
-
-
-
 private:
+
 	//ワールド行列
 	DirectX::SimpleMath::Matrix m_world;						
 	//座標
@@ -546,4 +560,11 @@ private:
 	//タイマー
 	DX::StepTimer m_stepTimer;
 
+	//移動方向切り替えのタイマー
+	float m_moveStateTimerX;
+	float m_moveStateTimerY;
+	
+	//移動方向
+	eMOVE_STATE_X m_moveStateX;
+	eMOVE_STATE_Y m_moveStateY;
 };

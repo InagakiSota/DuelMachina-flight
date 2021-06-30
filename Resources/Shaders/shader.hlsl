@@ -68,7 +68,7 @@ float4 PS(VS_OUTPUT input) : SV_Target {
 	// ŠgŽU”½ŽËŒõ
 	float4 diffuse = saturate(LN * gColor);
 	// ‹¾–Ê”½ŽËŒõ
-	float4 specular = saturate(100.0 * pow(RV, 5.0) * float4(1.0, 1.0, 1.0, 0.1));
+	float4 specular = saturate(2.0 * pow(RV, 5.0) * float4(1.0, 1.0, 1.0, 0.1));
  
 	return ambient + diffuse + specular;
 

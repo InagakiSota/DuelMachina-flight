@@ -206,7 +206,6 @@ void CharacterBase::Update(DX::StepTimer const& timer)
 	if (m_playerID == ePLAYER_ID::PLAYER_2 && m_hp > 0)
 	{
 		AI();
-		//StateManager();
 	}
 
 	//移動制限
@@ -274,7 +273,6 @@ void CharacterBase::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath
 	//ブースト移動状態のモデルの描画
 	else if (m_charaState == eCHARACTER_STATE::BOOST_MOVE)
 	{
-		m_pFbxModel->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BOOST));
 		//m_pBoostEffectManager->SetRenderState(view, proj);
 		m_pBoostEffectManager->Render(view, proj);
 	}
@@ -364,7 +362,7 @@ void CharacterBase::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath
 	}
 
 	//待機状態のモデルの描画
-	else
+	else if(m_charaState == eCHARACTER_STATE::WAIT)
 	{
 		m_pFbxModel->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::WAIT));
 	}
@@ -793,73 +791,73 @@ void CharacterBase::StateManager()
 		}
 	}
 
-	else if (m_playerID == ePLAYER_ID::PLAYER_2)
-	{
-		//やられ状態でなければ各状態の処理をする
-		if (m_charaState != eCHARACTER_STATE::DAMAGE)
-		{
-			if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::W) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::A) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::S) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::D) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::LeftShift) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Space) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) != true &&
-				m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) != true)
-			{
-				m_charaState = eCHARACTER_STATE::WAIT;
-			}
+	//else if (m_playerID == ePLAYER_ID::PLAYER_2)
+	//{
+	//	//やられ状態でなければ各状態の処理をする
+	//	if (m_charaState != eCHARACTER_STATE::DAMAGE)
+	//	{
+	//		if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::W) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::A) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::S) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::D) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::LeftShift) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Space) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::X) != true &&
+	//			m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::Z) != true)
+	//		{
+	//			m_charaState = eCHARACTER_STATE::WAIT;
+	//		}
 
-			//待ち状態に下入力でしゃがみ
-			if (m_charaState == eCHARACTER_STATE::WAIT && keyState.IsKeyDown(DirectX::Keyboard::Keys::S))
-			{
-				m_charaState = eCHARACTER_STATE::SQUAT;
-			}
+	//		//待ち状態に下入力でしゃがみ
+	//		if (m_charaState == eCHARACTER_STATE::WAIT && keyState.IsKeyDown(DirectX::Keyboard::Keys::S))
+	//		{
+	//			m_charaState = eCHARACTER_STATE::SQUAT;
+	//		}
 
-			//待ち状態で左右入力で移動
-			if (((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
-				keyState.IsKeyDown(DirectX::Keyboard::Keys::D) && m_frontVector.x > 0 &&
-				m_charaState != eCHARACTER_STATE::SQUAT && m_charaState != eCHARACTER_STATE::GUARD) ||
-				((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
-					keyState.IsKeyDown(DirectX::Keyboard::Keys::A) && m_frontVector.x < 0 &&
-					m_charaState != eCHARACTER_STATE::SQUAT && m_charaState != eCHARACTER_STATE::GUARD))
-			{
-				//前移動
-				m_charaState = eCHARACTER_STATE::MOVE_FRONT;
-			}
-			if (((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
-				keyState.IsKeyDown(DirectX::Keyboard::Keys::A) && m_frontVector.x > 0 &&
-				m_charaState != eCHARACTER_STATE::SQUAT) ||
-				((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
-					keyState.IsKeyDown(DirectX::Keyboard::Keys::D) && m_frontVector.x < 0 &&
-					m_charaState != eCHARACTER_STATE::SQUAT))
-			{
-				//後移動
-				m_charaState = eCHARACTER_STATE::MOVE_BACK;
+	//		//待ち状態で左右入力で移動
+	//		if (((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
+	//			keyState.IsKeyDown(DirectX::Keyboard::Keys::D) && m_frontVector.x > 0 &&
+	//			m_charaState != eCHARACTER_STATE::SQUAT && m_charaState != eCHARACTER_STATE::GUARD) ||
+	//			((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
+	//				keyState.IsKeyDown(DirectX::Keyboard::Keys::A) && m_frontVector.x < 0 &&
+	//				m_charaState != eCHARACTER_STATE::SQUAT && m_charaState != eCHARACTER_STATE::GUARD))
+	//		{
+	//			//前移動
+	//			m_charaState = eCHARACTER_STATE::MOVE_FRONT;
+	//		}
+	//		if (((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
+	//			keyState.IsKeyDown(DirectX::Keyboard::Keys::A) && m_frontVector.x > 0 &&
+	//			m_charaState != eCHARACTER_STATE::SQUAT) ||
+	//			((m_charaState == eCHARACTER_STATE::WAIT || m_charaState == eCHARACTER_STATE::JUMP) &&
+	//				keyState.IsKeyDown(DirectX::Keyboard::Keys::D) && m_frontVector.x < 0 &&
+	//				m_charaState != eCHARACTER_STATE::SQUAT))
+	//		{
+	//			//後移動
+	//			m_charaState = eCHARACTER_STATE::MOVE_BACK;
 
-			}
+	//		}
 
-			//上入力でジャンプ
-			if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::W) &&
-				m_charaState != eCHARACTER_STATE::SQUAT &&
-				m_charaState != eCHARACTER_STATE::BOOST_MOVE)
-			{
-				m_charaState = eCHARACTER_STATE::JUMP;
-			}
+	//		//上入力でジャンプ
+	//		if (m_pKeyTracker->IsKeyPressed(DirectX::Keyboard::Keys::W) &&
+	//			m_charaState != eCHARACTER_STATE::SQUAT &&
+	//			m_charaState != eCHARACTER_STATE::BOOST_MOVE)
+	//		{
+	//			m_charaState = eCHARACTER_STATE::JUMP;
+	//		}
 
-			//左Shiftでガード
-			if ((m_charaState == eCHARACTER_STATE::WAIT ||
-				m_charaState == eCHARACTER_STATE::SQUAT ||
-				m_charaState == eCHARACTER_STATE::MOVE_BACK ||
-				m_charaState == eCHARACTER_STATE::MOVE_FRONT) &&
-				keyState.IsKeyDown(DirectX::Keyboard::Keys::Q))
-			{
-				m_charaState = eCHARACTER_STATE::GUARD;
-			}
+	//		//左Shiftでガード
+	//		if ((m_charaState == eCHARACTER_STATE::WAIT ||
+	//			m_charaState == eCHARACTER_STATE::SQUAT ||
+	//			m_charaState == eCHARACTER_STATE::MOVE_BACK ||
+	//			m_charaState == eCHARACTER_STATE::MOVE_FRONT) &&
+	//			keyState.IsKeyDown(DirectX::Keyboard::Keys::Q))
+	//		{
+	//			m_charaState = eCHARACTER_STATE::GUARD;
+	//		}
 
 
-		}
-	}
+	//	}
+	//}
 
 }
 
@@ -1012,7 +1010,6 @@ void CharacterBase::Attack()
 				{
 					m_isAttackInput[static_cast<int>(eATTACK_TYPE::MIDDLE_BOTTOM)] = true;
 				}
-
 			}
 			m_aiStateTiemer = (rand() % 30) + 30.0f;
 		}
@@ -1045,11 +1042,11 @@ void CharacterBase::AI()
 	//敵との距離
 	float distance = m_pos.x - m_enemyPos.x;
 	//タイマーの値を減らす
-	m_aiStateTiemer--;
+	m_aiStateTiemer -= static_cast<float>(m_stepTimer.GetElapsedSeconds());
 	//タイマーの値が0になったらランダムに状態を切り替える
 	if (m_aiStateTiemer <= 0.0f)
 	{
-		m_aiState = rand() % 7;
+		m_aiState = rand() % 8;
 		m_aiStateTiemer = (rand() % 30) + 30.0f;
 	}
 
@@ -1057,35 +1054,34 @@ void CharacterBase::AI()
 	{
 		if (m_charaState != eCHARACTER_STATE::DAMAGE)
 		{
-
 			//待機
 			case 0:
 			{
 				m_charaState = eCHARACTER_STATE::WAIT;
 				break;
 			}
-			//前進
+			//移動
 			case 1:
 			{
-				m_charaState = eCHARACTER_STATE::MOVE_FRONT;
+				m_charaState = eCHARACTER_STATE::MOVE;
 				break;
 			}
-			//後退
+			//移動
 			case 2:
 			{
-				m_charaState = eCHARACTER_STATE::MOVE_BACK;
+				m_charaState = eCHARACTER_STATE::MOVE;
 				break;
 			}
-			//ジャンプ
+			//移動
 			case 3:
 			{
-				m_charaState = eCHARACTER_STATE::JUMP;
+				m_charaState = eCHARACTER_STATE::MOVE;
 				break;
 			}
-			//しゃがみ
+			//移動
 			case 4:
 			{
-				m_charaState = eCHARACTER_STATE::SQUAT;
+				m_charaState = eCHARACTER_STATE::MOVE;
 				break;
 			}
 			//ガード
@@ -1103,7 +1099,7 @@ void CharacterBase::AI()
 			}
 			default:
 				break;
-			}
+		}
 	}
 
 }

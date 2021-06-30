@@ -9,6 +9,7 @@
 #include "../../CharacterBase.h"
 #include "../../CharacterState.h"
 #include "../Character2Params.h"
+#include "../../ChracterAnimationNumber.h"
 
 //コンストラクタ
 Character2BoostMoveState::Character2BoostMoveState()
@@ -60,31 +61,58 @@ void Character2BoostMoveState::Update()
 		m_pCharacter->SetBoostCap(0);
 	}
 
-	//右入力
-	if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) && m_pCharacter->GetPos().x < Character2Params::MOVE_LIMIT_X)
-	{
-		vel.x = Character2Params::GetInstance()->MOVE_BOOST_FORCE;
-	}
-	//左入力
-	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) && m_pCharacter->GetPos().x > -Character2Params::MOVE_LIMIT_X)
-	{
-		vel.x = -Character2Params::GetInstance()->MOVE_BOOST_FORCE;
-	}
-	else vel.x = 0.0f;
-
 	//上入力
 	if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && m_pCharacter->GetPos().y < Character2Params::MOVE_LIMIT_TOP)
 	{
-		vel.y = Character2Params::GetInstance()->MOVE_BOOST_FORCE;
+		vel.y = 1;
+		//アニメーションの切り替え
+		m_pCharacter->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BOOST));
 	}
 	//下入力
 	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && m_pCharacter->GetPos().y > Character2Params::MOVE_LIMIT_BOTTOM)
 	{
-		vel.y = -Character2Params::GetInstance()->MOVE_BOOST_FORCE;
+		vel.y = -1;
+		//アニメーションの切り替え
+		m_pCharacter->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BOOST));
 	}
 	else vel.y = 0.0f;
+	//右入力
+	if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) && m_pCharacter->GetPos().x < Character2Params::MOVE_LIMIT_X)
+	{
+		vel.x = 1;
+		//アニメーションの切り替え
+		if (m_pCharacter->GetFrontVector().x > 0)
+		{
+			m_pCharacter->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BOOST));
+		}
+		else
+		{
+			m_pCharacter->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+		}
 
-	m_pCharacter->SetVel(vel);
+	}
+	//左入力
+	else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) && m_pCharacter->GetPos().x > -Character2Params::MOVE_LIMIT_X)
+	{
+		vel.x = -1;
+		//アニメーションの切り替え
+		if (m_pCharacter->GetFrontVector().x > 0)
+		{
+			m_pCharacter->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+		}
+		else
+		{
+			m_pCharacter->ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BOOST));
+		}
+
+	}
+	else vel.x = 0.0f;
+
+
+	//移動量を正規化
+	vel.Normalize();
+
+	m_pCharacter->SetVel(vel * Character2Params::GetInstance()->MOVE_BOOST_FORCE);
 
 	//スペースキーを放すかブースト容量が0になったら元のステートに戻る
 	if (keyState.IsKeyUp(DirectX::Keyboard::Keys::Space) || m_pCharacter->GetBoostCap() <= 0)

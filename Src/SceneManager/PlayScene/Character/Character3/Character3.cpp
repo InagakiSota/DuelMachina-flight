@@ -323,37 +323,73 @@ void Character3::Move()
 		GetCharaState() != eCHARACTER_STATE::DAMAGE &&
 		GetCharaState() != eCHARACTER_STATE::GUARD)
 	{
+		//上入力かつ移動制限内にいたら移動
+		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character3Params::MOVE_LIMIT_TOP)
+		{
+			vel.y = 1;
+
+			//アニメーションの切り替え
+			ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::JUMP));
+
+
+		}
+		//下入力かつ移動制限内にいたら移動
+		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > Character3Params::MOVE_LIMIT_BOTTOM)
+		{
+			vel.y = -1;
+			//アニメーションの切り替え
+			ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::JUMP));
+
+
+		}
+		else vel.y = 0.0f;
+
 		//右入力かつ移動制限内にいたら移動
 		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) &&
 			(GetPos().x <= Character3Params::MOVE_LIMIT_X))
 		{
 			vel.x = 1;
+
+			//アニメーションの切り替え
+			if (GetFrontVector().x > 0)
+			{
+				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+			}
+			else
+			{
+				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+			}
+
 		}
 		//左入力かつ移動制限内にいたら移動
 		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) &&
 			(GetPos().x >= -Character3Params::MOVE_LIMIT_X))
 		{
 			vel.x = -1;
+
+			//アニメーションの切り替え
+			if (GetFrontVector().x > 0)
+			{
+				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+			}
+			else
+			{
+				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+			}
+
 		}
 		else vel.x = 0.0f;
 
-		//上入力かつ移動制限内にいたら移動
-		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character3Params::MOVE_LIMIT_TOP)
-		{
-			vel.y = 1;
-		}
-		//下入力かつ移動制限内にいたら移動
-		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > Character3Params::MOVE_LIMIT_BOTTOM)
-		{
-			vel.y = -1;
-		}
-		else vel.y = 0.0f;
 
 		vel.Normalize();
 
 		SetVel(vel * Character3Params::GetInstance()->MOVE_FRONT_FORCE);
 	}
 
+}
+
+void Character3::MoveAI()
+{
 }
 
 ///////////////////////////
