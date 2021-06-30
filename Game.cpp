@@ -59,7 +59,7 @@ Game::~Game()
 
 
 	//ƒV[ƒ“‚ÌI—¹ˆ—
-	m_pSceneManager->Finalize();
+	if(m_pSceneManager != nullptr)m_pSceneManager->Finalize();
 	m_pSceneManager = nullptr;
 	SceneManager::ReleaseInstance();
 	m_states.reset();

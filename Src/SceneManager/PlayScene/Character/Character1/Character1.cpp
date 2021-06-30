@@ -120,6 +120,7 @@ void Character1::Update(DX::StepTimer const& timer)
 {
 	//移動処理
 	if(GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
+
 	//基底クラスの更新
 	CharacterBase::Update(timer);
 	//ヒットエフェクトの発生位置の座標設定
@@ -307,15 +308,16 @@ void Character1::ChangeAnimation(const int & animationStack)
 //戻り値:なし
 //////////////////////////
 void Character1::AI()
-{	
-	//基底クラスのAI関数
+{		
 	CharacterBase::AI();
-
-	if (GetCharaState() == eCHARACTER_STATE::MOVE && GetPlayerID() == ePLAYER_ID::PLAYER_2)
+	//更新
+	Character1::Update(GetStepTimer());
+	//基底クラスのAI関数
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_2 && GetCharaState() == eCHARACTER_STATE::MOVE)
 	{
 		Character1::MoveAI();
-
 	}
+
 }
 
 
@@ -477,7 +479,7 @@ void Character1::MoveAI()
 	
 
 	//タイマーを減らす
-	moveTimerX -= GetStepTimer().GetElapsedSeconds();
+	moveTimerX -= static_cast<float>(GetStepTimer().GetElapsedSeconds());
 	
 	//移動量
 	SetVel(vel * Character1Params::GetInstance()->MOVE_FRONT_FORCE);

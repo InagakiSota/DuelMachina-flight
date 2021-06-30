@@ -246,8 +246,6 @@ void CharacterBase::Update(DX::StepTimer const& timer)
 	m_legBoxWorld = DirectX::SimpleMath::Matrix::CreateTranslation(m_legCollBox.pos);
 	m_bodyBoxWorld = DirectX::SimpleMath::Matrix::CreateTranslation(m_bodyCollBox.pos);
 	m_headBoxWorld = DirectX::SimpleMath::Matrix::CreateTranslation(m_headCollBox.pos);
-
-
 }
 
 //////////////////////////
@@ -947,8 +945,8 @@ void CharacterBase::Attack()
 	//プレイヤー２の処理
 	else if (m_playerID == ePLAYER_ID::PLAYER_2)
 	{
-		m_aiStateTiemer--;
-		if (m_aiStateTiemer <= 0.0f)
+		m_aiAttackTimer--;
+		if (m_aiAttackTimer <= 0.0f)
 		{
 			int random = rand() % 2;
 			//弱攻撃
@@ -1011,7 +1009,7 @@ void CharacterBase::Attack()
 					m_isAttackInput[static_cast<int>(eATTACK_TYPE::MIDDLE_BOTTOM)] = true;
 				}
 			}
-			m_aiStateTiemer = (rand() % 30) + 30.0f;
+			m_aiAttackTimer = (rand() % 30) + 30.0f;
 		}
 
 
@@ -1047,12 +1045,13 @@ void CharacterBase::AI()
 	if (m_aiStateTiemer <= 0.0f)
 	{
 		m_aiState = rand() % 8;
-		m_aiStateTiemer = (rand() % 30) + 30.0f;
+		//m_aiStateTiemer = (rand() % 30) + 30.0f;
+		m_aiStateTiemer = 1.0f;
 	}
 
-	switch (m_aiState)
+	if (m_charaState != eCHARACTER_STATE::DAMAGE)
 	{
-		if (m_charaState != eCHARACTER_STATE::DAMAGE)
+		switch (m_aiState)
 		{
 			//待機
 			case 0:

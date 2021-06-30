@@ -142,8 +142,10 @@ void PlaySceneMainState::Main(DX::StepTimer const& timer)
 	for (int i = 0; i < PlayScene::PLAYER_NUM; i++)
 	{
 		//プレイヤーの更新
-		m_pPlayScene->GetPlayer(i)->Update(timer);
+		//m_pPlayScene->GetPlayer(i)->Update(timer);
 	}
+	m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_1))->Update(timer);
+	m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_2))->AI();
 
 	//敵の座標の取得
 	m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_1))->
@@ -174,7 +176,6 @@ void PlaySceneMainState::Main(DX::StepTimer const& timer)
 		m_pPlayScene->SetPlayerWinNum(static_cast<int>(ePLAYER_ID::PLAYER_1),
 			m_pPlayScene->GetPlayerWinNum(static_cast<int>(ePLAYER_ID::PLAYER_1)) + 1);
 		m_pPlayScene->SetPlaySceneState(PlayScene::ePLAY_SCENE_STATE::RESULT);
-
 	}
 }
 

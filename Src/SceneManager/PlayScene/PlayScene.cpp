@@ -79,6 +79,8 @@ PlayScene::~PlayScene()
 	m_pDebugCamera.reset();
 	m_space.reset();
 	m_sprite2D.reset();
+	m_isMenuDisplay = false;
+	m_isManualDisplay = false;
 
 	for (int i = 0; i < PLAYER_NUM; i++)
 	{
@@ -120,14 +122,12 @@ void PlayScene::Initialize()
 		case eCHARACTER_ID::CHARACTER_1:
 		{
 			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetStartPos(DirectX::SimpleMath::Vector3(-2.0f, 0.0f, 0.0f));
-
 			break;
 		}
 		//キャラクター２
 		case eCHARACTER_ID::CHARACTER_2:
 		{
 			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_1)]->SetStartPos(DirectX::SimpleMath::Vector3(-2.0f, 1.0f, 0.0f));
-
 			break;
 		}
 		//キャラクター３
@@ -146,14 +146,12 @@ void PlayScene::Initialize()
 		case eCHARACTER_ID::CHARACTER_1:
 		{
 			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetStartPos(DirectX::SimpleMath::Vector3(2.0f, 0.0f, 0.0f));
-
 			break;
 		}
 		//キャラクター２
 		case eCHARACTER_ID::CHARACTER_2:
 		{
 			m_pPlayer[static_cast<int>(ePLAYER_ID::PLAYER_2)]->SetStartPos(DirectX::SimpleMath::Vector3(2.0f, 1.0f, 0.0f));
-
 			break;
 		}
 		//キャラクター３
@@ -307,6 +305,9 @@ void PlayScene::Render()
 //////////////////////////
 void PlayScene::Finalize()
 {
+	m_isMenuDisplay = false;
+	m_isManualDisplay = false;
+
 	//m_pFbx.reset();
 	m_pDebugCamera.reset();
 	m_space.reset();
@@ -323,6 +324,10 @@ void PlayScene::Finalize()
 
 	}
 
+	//メニューの終了処理
+	m_pPlaySceneMenu->Finalize();
+	m_pPlaySceneMenu.reset();
+
 	DebugFont::Dispose();
 
 	//攻撃マネージャーの終了処理
@@ -337,6 +342,7 @@ void PlayScene::Finalize()
 	//UIクラスの終了処理
 	m_pPlaySceneUI->Finalize();
 	m_pPlaySceneUI.reset();
+
 
 }
 

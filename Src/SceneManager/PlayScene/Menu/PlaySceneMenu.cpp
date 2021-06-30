@@ -49,7 +49,10 @@ void PlaySceneMenu::Initialize()
 	//操作説明画面クラスのポインタ
 	m_pPlaySceneManual = std::make_unique<PlaySceneManual>();
 	//プレイシーンのポインタを渡す
-	m_pPlaySceneManual->SetPlayScene(m_pPlayScene);
+	if (m_pPlayScene != nullptr) 
+	{
+		m_pPlaySceneManual->SetPlayScene(m_pPlayScene);
+	}
 	//操作説明画面クラスの初期化
 	m_pPlaySceneManual->Initialize();
 
@@ -62,6 +65,18 @@ void PlaySceneMenu::Initialize()
 ////////////////////////
 void PlaySceneMenu::Update()
 {
+	//操作説明の表示フラグが立ったら操作説明の更新
+	if (m_pPlaySceneManual != nullptr)
+	{
+		if (m_pPlayScene != nullptr)
+		{
+			if (m_pPlayScene->GetIsManualDisplay() == true)
+			{
+				m_pPlaySceneManual->Update();
+			}
+		}
+	}
+	
 	if (m_pPlayScene->GetKeyTracker()->IsKeyPressed(DirectX::Keyboard::Keys::Escape) && m_pPlayScene->GetIsManualDisplay() == false)
 	{
 		//SE再生
@@ -173,9 +188,6 @@ void PlaySceneMenu::Update()
 		}
 	}
 
-	//操作説明の表示フラグが立ったら操作説明の更新
-	if (m_pPlayScene != nullptr && m_pPlayScene->GetIsManualDisplay() == true && m_pPlaySceneManual != nullptr)m_pPlaySceneManual->Update();
-
 }
 
 ////////////////////////
@@ -208,6 +220,9 @@ void PlaySceneMenu::Finalize()
 {
 	//操作説明クラスの終了処理
 	m_pPlaySceneManual->Finalize();
+	m_pPlaySceneManual = nullptr;
+
+	m_pPlayScene = nullptr;
 
 	//リソースの解放
 	m_pMenuCursorSprite.reset();
