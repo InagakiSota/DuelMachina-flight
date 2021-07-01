@@ -441,7 +441,7 @@ public:
 	 void Attack() override;
 
 	 //CPU‚Ì‹““®
-	 void AI();
+	 void AI(DX::StepTimer const& timer)override;
 
 	 //“–‚½‚è”»’è‚ÌXV
 	 void CollisionUpdate() {}

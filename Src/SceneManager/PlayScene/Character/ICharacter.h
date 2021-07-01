@@ -56,6 +56,8 @@ public:
 	//当たり判定の更新
 	virtual void CollisionUpdate() = 0;
 
+	//CPUの挙動
+	virtual void AI(DX::StepTimer const& timer) = 0;
 
 	////////////////////////////////
 	//ゲッター、セッター

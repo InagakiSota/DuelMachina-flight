@@ -44,6 +44,8 @@ public:
 
 	//アニメーションの切り替え
 	void ChangeAnimation(const int& animationStack) override;
+	//AI
+	void AI(DX::StepTimer const& timer) override;
 
 private:
 	//移動
@@ -55,8 +57,6 @@ private:
 	//キャラのステート管理
 	void StateManager()override;
 
-	//AI
-	void AI();
 
 	//当たり判定の更新
 	void CollisionUpdate() override;

@@ -205,7 +205,7 @@ void CharacterBase::Update(DX::StepTimer const& timer)
 	//プレイヤー２ならAI操作
 	if (m_playerID == ePLAYER_ID::PLAYER_2 && m_hp > 0)
 	{
-		AI();
+		AI(timer);
 	}
 
 	//移動制限
@@ -1035,7 +1035,7 @@ void CharacterBase::Attack()
 //引数:なし
 //戻り値:なし
 //////////////////////////
-void CharacterBase::AI()
+void CharacterBase::AI(DX::StepTimer const& timer)
 {
 	//敵との距離
 	float distance = m_pos.x - m_enemyPos.x;

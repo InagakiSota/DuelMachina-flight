@@ -420,10 +420,10 @@ void Character3::StateManager()
 //ˆø”:‚È‚µ
 //–ß‚è’l:‚È‚µ
 //////////////////////////
-void Character3::AI()
+void Character3::AI(DX::StepTimer const& timer)
 {
 	//Šî’êƒNƒ‰ƒX‚ÌAIŠÖ”
-	CharacterBase::AI();
+	CharacterBase::AI(timer);
 }
 
 ///////////////////////////

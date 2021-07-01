@@ -142,10 +142,10 @@ void PlaySceneMainState::Main(DX::StepTimer const& timer)
 	for (int i = 0; i < PlayScene::PLAYER_NUM; i++)
 	{
 		//プレイヤーの更新
-		//m_pPlayScene->GetPlayer(i)->Update(timer);
+		m_pPlayScene->GetPlayer(i)->Update(timer);
 	}
-	m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_1))->Update(timer);
-	m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_2))->AI();
+	//m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_1))->Update(timer);
+	//m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_2))->AI(timer);
 
 	//敵の座標の取得
 	m_pPlayScene->GetPlayer(static_cast<int>(ePLAYER_ID::PLAYER_1))->

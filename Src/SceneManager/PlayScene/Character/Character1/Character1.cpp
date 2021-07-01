@@ -307,16 +307,16 @@ void Character1::ChangeAnimation(const int & animationStack)
 //引数:なし
 //戻り値:なし
 //////////////////////////
-void Character1::AI()
+void Character1::AI(DX::StepTimer const& timer)
 {		
-	CharacterBase::AI();
-	//更新
-	Character1::Update(GetStepTimer());
+	CharacterBase::AI(timer);
 	//基底クラスのAI関数
 	if (GetPlayerID() == ePLAYER_ID::PLAYER_2 && GetCharaState() == eCHARACTER_STATE::MOVE)
 	{
 		Character1::MoveAI();
 	}
+	//更新
+	//Character1::Update(timer);
 
 }
 

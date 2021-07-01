@@ -426,10 +426,10 @@ void Character2::StateManager()
 //ˆø”:‚È‚µ
 //–ß‚è’l:‚È‚µ
 //////////////////////////
-void Character2::AI()
+void Character2::AI(DX::StepTimer const& timer)
 {
 	//Šî’êƒNƒ‰ƒX‚ÌAIŠÖ”
-	CharacterBase::AI();
+	CharacterBase::AI(timer);
 }
 
 
