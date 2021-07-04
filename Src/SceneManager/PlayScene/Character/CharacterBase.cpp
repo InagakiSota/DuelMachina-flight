@@ -1062,25 +1062,25 @@ void CharacterBase::AI(DX::StepTimer const& timer)
 			//à⁄ìÆ
 			case 1:
 			{
-				m_charaState = eCHARACTER_STATE::MOVE;
+				m_charaState = eCHARACTER_STATE::MOVE_AI;
 				break;
 			}
 			//à⁄ìÆ
 			case 2:
 			{
-				m_charaState = eCHARACTER_STATE::MOVE;
+				m_charaState = eCHARACTER_STATE::MOVE_AI;
 				break;
 			}
 			//à⁄ìÆ
 			case 3:
 			{
-				m_charaState = eCHARACTER_STATE::MOVE;
+				m_charaState = eCHARACTER_STATE::MOVE_AI;
 				break;
 			}
 			//à⁄ìÆ
 			case 4:
 			{
-				m_charaState = eCHARACTER_STATE::MOVE;
+				m_charaState = eCHARACTER_STATE::MOVE_AI;
 				break;
 			}
 			//ÉKÅ[Éh

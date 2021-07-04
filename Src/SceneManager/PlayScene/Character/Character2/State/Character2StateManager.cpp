@@ -95,6 +95,7 @@ void Character2StateManager::Update(const eCHARACTER_STATE& charaState)
 	if (charaState != eCHARACTER_STATE::GUARD &&
 		charaState != eCHARACTER_STATE::LOSE &&
 		charaState != eCHARACTER_STATE::WIN &&
+		charaState != eCHARACTER_STATE::MOVE_AI &&
 		charaState != eCHARACTER_STATE::MOVE)
 		m_pCharacterStateArray[static_cast<int>(charaState)]->Update();
 }

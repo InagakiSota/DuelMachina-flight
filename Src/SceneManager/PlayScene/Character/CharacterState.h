@@ -17,6 +17,7 @@ enum class eCHARACTER_STATE : int
 	MOVE_BACK,		//Œã‚ëˆÚ“®
 	MOVE_UP,		//ãˆÚ“®
 	MOVE_DOWN,		//‰ºˆÚ“®
+	MOVE_AI,		//AI‚ÌˆÚ“®
 	SQUAT,			//‚µ‚á‚ª‚Ý
 	DAMAGE,			//‚â‚ç‚ê
 	GUARD,			//ƒK[ƒh

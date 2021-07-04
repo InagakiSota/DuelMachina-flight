@@ -311,7 +311,7 @@ void Character1::AI(DX::StepTimer const& timer)
 {		
 	CharacterBase::AI(timer);
 	//基底クラスのAI関数
-	if (GetPlayerID() == ePLAYER_ID::PLAYER_2 && GetCharaState() == eCHARACTER_STATE::MOVE)
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_2 && GetCharaState() == eCHARACTER_STATE::MOVE_AI)
 	{
 		Character1::MoveAI();
 	}
@@ -447,7 +447,6 @@ void Character1::MoveAI()
 				{
 					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
 				}
-
 			}
 			break;
 		}
@@ -472,11 +471,8 @@ void Character1::MoveAI()
 		default:
 			break;
 	}
-
-
 	//移動量の正規化
 	vel.Normalize();
-	
 
 	//タイマーを減らす
 	moveTimerX -= static_cast<float>(GetStepTimer().GetElapsedSeconds());

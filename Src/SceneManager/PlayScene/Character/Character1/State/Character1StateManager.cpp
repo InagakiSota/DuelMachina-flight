@@ -91,9 +91,10 @@ void Character1StateManager::Initialize(CharacterBase * pCharacterBase)
 void Character1StateManager::Update(const eCHARACTER_STATE& charaState)
 {
 	//ステートごとに更新をかける
-	if(charaState != eCHARACTER_STATE::GUARD &&
-		charaState != eCHARACTER_STATE::LOSE && 
+	if (charaState != eCHARACTER_STATE::GUARD &&
+		charaState != eCHARACTER_STATE::LOSE &&
 		charaState != eCHARACTER_STATE::WIN &&
+		charaState != eCHARACTER_STATE::MOVE_AI &&
 		charaState != eCHARACTER_STATE::MOVE)
 		m_pCharacterStateArray[static_cast<int>(charaState)]->Update();
 }
