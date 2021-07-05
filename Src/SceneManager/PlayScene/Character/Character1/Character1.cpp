@@ -118,9 +118,13 @@ void Character1::Initialize()
 //////////////////////////
 void Character1::Update(DX::StepTimer const& timer)
 {
-	//移動処理
-	if(GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
+	num = GetPlayerID();
 
+	//移動処理
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)
+	{
+		Move();
+	}
 	//基底クラスの更新
 	CharacterBase::Update(timer);
 	//ヒットエフェクトの発生位置の座標設定
@@ -228,7 +232,10 @@ void Character1::HitAttack()
 void Character1::Ready(DX::StepTimer const& timer)
 {
 	//移動処理
-	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)Move();
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1 && GetCharaState() != eCHARACTER_STATE::DAMAGE)
+	{
+		Move();
+	}
 	//基底クラスの準備関数
 	CharacterBase::Ready(timer);
 
@@ -334,66 +341,70 @@ void Character1::Move()
 	//プレイヤーの移動量取得
 	DirectX::SimpleMath::Vector3 vel = GetVel();
 
-	//ガード状態かやられ状態でなければ移動
-	if (GetCharaState() != eCHARACTER_STATE::BOOST_MOVE &&
-		GetCharaState() != eCHARACTER_STATE::DAMAGE &&
-		GetCharaState() != eCHARACTER_STATE::GUARD)
+
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_1)
 	{
-		//上入力かつ移動制限内にいたら移動
-		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character1Params::MOVE_LIMIT_TOP)
+		//ガード状態かやられ状態でなければ移動
+		if (GetCharaState() != eCHARACTER_STATE::BOOST_MOVE &&
+			GetCharaState() != eCHARACTER_STATE::DAMAGE &&
+			GetCharaState() != eCHARACTER_STATE::GUARD)
 		{
-			vel.y = 1;
-
-			//アニメーションの切り替え
-			ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::JUMP));
-
-		}
-		//下入力かつ移動制限内にいたら移動
-		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > Character1Params::MOVE_LIMIT_BOTTOM)
-		{
-			vel.y = -1;
-			//アニメーションの切り替え
-			ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::JUMP));
-
-		}
-		else vel.y = 0.0f;
-
-		//右入力かつ移動制限内にいたら移動
-		if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) &&
-			(GetPos().x <= Character1Params::MOVE_LIMIT_X))
-		{
-			vel.x = 1;
-			//アニメーションの切り替え
-			if (GetFrontVector().x > 0)
+			//上入力かつ移動制限内にいたら移動
+			if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Up) && GetPos().y < Character1Params::MOVE_LIMIT_TOP)
 			{
-				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+				vel.y = 1;
+
+				//アニメーションの切り替え
+				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::JUMP));
+
 			}
-			else
+			//下入力かつ移動制限内にいたら移動
+			else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Down) && GetPos().y > Character1Params::MOVE_LIMIT_BOTTOM)
 			{
-				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+				vel.y = -1;
+				//アニメーションの切り替え
+				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::JUMP));
+
 			}
+			else vel.y = 0.0f;
+
+			//右入力かつ移動制限内にいたら移動
+			if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Right) &&
+				(GetPos().x <= Character1Params::MOVE_LIMIT_X))
+			{
+				vel.x = 1;
+				//アニメーションの切り替え
+				if (GetFrontVector().x > 0)
+				{
+					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+				}
+				else
+				{
+					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+				}
+			}
+			//左入力かつ移動制限内にいたら移動
+			else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) &&
+				(GetPos().x >= -Character1Params::MOVE_LIMIT_X))
+			{
+				vel.x = -1;
+				//アニメーションの切り替え
+				if (GetFrontVector().x > 0)
+				{
+					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+				}
+				else
+				{
+					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+				}
+			}
+			else vel.x = 0.0f;
+
+
+			vel.Normalize();
+
+			SetVel(vel * Character1Params::GetInstance()->MOVE_FRONT_FORCE);
 		}
-		//左入力かつ移動制限内にいたら移動
-		else if (keyState.IsKeyDown(DirectX::Keyboard::Keys::Left) &&
-			(GetPos().x >= -Character1Params::MOVE_LIMIT_X))
-		{
-			vel.x = -1;
-			//アニメーションの切り替え
-			if (GetFrontVector().x > 0)
-			{
-				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
-			}
-			else
-			{
-				ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
-			}
-		}
-		else vel.x = 0.0f;
-
-
-		vel.Normalize();
-
-		SetVel(vel * Character1Params::GetInstance()->MOVE_FRONT_FORCE);
 	}
 
 }
@@ -416,70 +427,76 @@ void Character1::MoveAI()
 	static CharacterBase::eMOVE_STATE_X moveStateX = CharacterBase::eMOVE_STATE_X::NONE;
 	static CharacterBase::eMOVE_STATE_Y moveStateY = CharacterBase::eMOVE_STATE_Y::NONE;
 
-	//X方向の移動
-	if (moveTimerX <= 0.0f)
+	if (GetPlayerID() == ePLAYER_ID::PLAYER_2)
 	{
-		moveStateX = static_cast<eMOVE_STATE_X>(rand() % 3);
-		
-		moveTimerX = 60.0f;
-	}
-	switch (moveStateX)
-	{
-		//移動しない
-		case CharacterBase::eMOVE_STATE_X::NONE:
+		//X方向の移動
+		if (moveTimerX <= 0.0f)
 		{
-			vel.x = 0.0f;
-			break;
-		}
-		//右移動
-		case CharacterBase::eMOVE_STATE_X::RIGHT:
-		{
-			if (GetPos().x <= Character1Params::MOVE_LIMIT_X)
-			{
-				//移動量設定
-				vel.x = 1;
-				//アニメーションの切り替え
-				if (GetFrontVector().x > 0)
-				{
-					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
-				}
-				else
-				{
-					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
-				}
-			}
-			break;
-		}
-		//左移動
-		case CharacterBase::eMOVE_STATE_X::LEFT:
-		{
-			if (GetPos().x >= -Character1Params::MOVE_LIMIT_X)
-			{
-				vel.x = -1;
-				//アニメーションの切り替え
-				if (GetFrontVector().x > 0)
-				{
-					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
-				}
-				else
-				{
-					ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
-				}
-			}
-			break;
-		}
-		default:
-			break;
-	}
-	//移動量の正規化
-	vel.Normalize();
+			moveStateX = static_cast<eMOVE_STATE_X>(rand() % 3);
 
-	//タイマーを減らす
-	moveTimerX -= static_cast<float>(GetStepTimer().GetElapsedSeconds());
-	
-	//移動量
-	SetVel(vel * Character1Params::GetInstance()->MOVE_FRONT_FORCE);
+			moveTimerX = 60.0f;
+		}
+		switch (moveStateX)
+		{
+			//移動しない
+			case CharacterBase::eMOVE_STATE_X::NONE:
+			{
+				vel.x = 0.0f;
+				break;
+			}
+			//右移動
+			case CharacterBase::eMOVE_STATE_X::RIGHT:
+			{
+				if (GetPos().x <= Character1Params::MOVE_LIMIT_X)
+				{
+					//移動量設定
+					vel.x = 1;
+					//アニメーションの切り替え
+					if (GetFrontVector().x > 0)
+					{
+						ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+					}
+					else
+					{
+						ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+					}
+				}
+				else vel.x = 0.0f;
+				break;
+			}
+			//左移動
+			case CharacterBase::eMOVE_STATE_X::LEFT:
+			{
+				if (GetPos().x >= -Character1Params::MOVE_LIMIT_X)
+				{
+					vel.x = -1;
+					//アニメーションの切り替え
+					if (GetFrontVector().x > 0)
+					{
+						ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_BACK));
+					}
+					else
+					{
+						ChangeAnimation(static_cast<int>(eCHARACTER_ANIMATION_NUMBER::MOVE_FRONT));
+					}
+				}
+				else vel.x = 0.0f;
 
+				break;
+			}
+			default:
+				break;
+		}
+		//移動量の正規化
+		vel.Normalize();
+
+		//タイマーを減らす
+		moveTimerX -= static_cast<float>(GetStepTimer().GetElapsedSeconds());
+
+		//移動量
+		SetVel(vel * Character1Params::GetInstance()->MOVE_FRONT_FORCE);
+
+	}
 }
 
 ///////////////////////////

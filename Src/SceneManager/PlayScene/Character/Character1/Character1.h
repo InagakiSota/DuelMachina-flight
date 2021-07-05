@@ -59,5 +59,5 @@ private:
 	int thinkTimer;
 
 	float toEnemyRange;
-
+	ePLAYER_ID num;
 };

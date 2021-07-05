@@ -217,8 +217,10 @@ void CharacterBase::Update(DX::StepTimer const& timer)
 	m_pStateManager->Update(m_charaState);
 
 	//ƒK[ƒhó‘Ô‚©UŒ‚’†‚È‚çˆÚ“®—Ê‚ğ0‚É‚·‚é
-	if (m_charaState == eCHARACTER_STATE::GUARD||
-		m_isAttacking == true)m_vel = DirectX::SimpleMath::Vector3::Zero;
+	if (m_charaState == eCHARACTER_STATE::GUARD || m_isAttacking == true)
+	{
+		m_vel = DirectX::SimpleMath::Vector3::Zero;
+	}
 
 	//‰ñ“]s—ñ‚ğì¬
 	DirectX::SimpleMath::Matrix rotY = DirectX::SimpleMath::Matrix::CreateRotationY(DirectX::XMConvertToRadians(m_angleY));
@@ -998,7 +1000,6 @@ void CharacterBase::Attack()
 					m_isAttacking == false)
 				{
 					m_isAttackInput[static_cast<int>(eATTACK_TYPE::MIDDLE_SIDE)] = true;
-
 				}
 				//‰º
 				else if (m_charaState == eCHARACTER_STATE::SQUAT &&
